@@ -57,7 +57,7 @@ const TutorCard = ({ tutor }: { tutor: Tutor }) => {
       
       <CardFooter className="p-6 pt-0">
         <Link href={`/book?tutorId=${tutor.id}`} className="w-full">
-          <Button variant="secondary" className="w-full group-hover:bg-[#aff33e] group-hover:text-black transition-all">
+          <Button variant="secondary" className="w-full group-hover:bg-accent group-hover:text-black transition-all">
             Book a Session
           </Button>
         </Link>

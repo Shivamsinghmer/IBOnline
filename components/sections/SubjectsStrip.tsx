@@ -2,43 +2,34 @@
 
 import React from "react";
 import { subjects } from "@/lib/data";
-import { SubjectBadge } from "@/components/ui/Badge";
-import { cn } from "@/lib/utils";
 
 const SubjectsStrip = () => {
+  // Use 4 sets of subjects to ensure the marquee always fills the container and loops seamlessly
+  const marqueeItems = [...subjects, ...subjects, ...subjects, ...subjects];
+
   return (
-    <section id="subjects" className="py-12 bg-[var(--background)] border-y border-[var(--border)] overflow-hidden">
-      <div className="container mx-auto px-6">
-        <label className="block text-center text-sm font-bold uppercase tracking-[0.2em] text-[var(--muted-foreground)] mb-8">
-          Explore Popular Subjects
+    <section id="subjects" className="py-3 bg-[var(--surface-2)] border-y border-[var(--border)] overflow-hidden flex items-center h-16">
+      <div className="container max-w-6xl mx-auto px-6 flex items-center gap-6 relative z-10">
+        <label className="shrink-0 text-[10px] uppercase tracking-[0.15em] text-[var(--muted)] font-semibold whitespace-nowrap bg-[var(--surface-2)] pr-4 z-20">
+          Tutoring Available For
         </label>
         
-        {/* 
-          Using Tailwind for scrollbar hiding and masking.
-          Masking is done via [mask-image] utility.
-          Scrollbar hiding is done via custom utility classes in globals.css or just inline-style for now to avoid hydration mismatch.
-        */}
-        <div 
-          className={cn(
-            "flex flex-nowrap overflow-x-auto pb-4 gap-4 -mx-6 px-6",
-            "scrollbar-none" // We'll add this to globals.css
-          )}
-          style={{
-            maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
-            WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
-          }}
-        >
-          {subjects.map((subject) => (
-            <div key={subject.id} className="flex-shrink-0 transition-all duration-300">
-              <SubjectBadge label={subject.label} icon={subject.icon} />
-            </div>
-          ))}
-          {/* Duplicate for infinite feel scroll if needed */}
-          {subjects.map((subject) => (
-            <div key={`${subject.id}-dup`} className="flex-shrink-0 transition-all duration-300 pointer-events-none md:pointer-events-auto">
-              <SubjectBadge label={subject.label} icon={subject.icon} />
-            </div>
-          ))}
+        <div className="relative flex-1 overflow-hidden items-center flex h-full">
+          {/* Fades for smooth entry/exit */}
+          <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[var(--surface-2)] to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[var(--surface-2)] to-transparent z-10" />
+
+          <div className="animate-marquee gap-3 flex items-center whitespace-nowrap">
+            {marqueeItems.map((subject, index) => (
+              <div 
+                key={`${subject.id}-${index}`} 
+                className="group flex-shrink-0 bg-white border border-[var(--border)] rounded-full px-4 py-1.5 text-sm font-body font-medium text-[var(--foreground)] hover:bg-[var(--primary-light)] hover:border-[var(--primary)] hover:text-[#3d6b00] transition-all duration-150 cursor-pointer shadow-sm flex items-center gap-2"
+              >
+                <span className="text-base leading-none">{subject.icon}</span>
+                <span>{subject.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

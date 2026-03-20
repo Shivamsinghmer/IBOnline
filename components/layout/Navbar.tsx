@@ -2,19 +2,14 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { useTheme } from "next-themes";
-import { Moon, Sun, Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Navbar = () => {
-  const [mounted, setMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    setMounted(true);
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
@@ -22,73 +17,56 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (!mounted) return null;
-
   const navLinks = [
-    { name: "Find a Tutor", href: "/tutors" },
     { name: "Subjects", href: "/#subjects" },
     { name: "How It Works", href: "/#how-it-works" },
-    { name: "Pricing", href: "/#pricing" },
+    { name: "Success Stories", href: "/#testimonials" },
   ];
 
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-white/80 dark:bg-[#020617]/80 backdrop-blur-md border-[var(--border)] py-3 shadow-sm"
-          : "bg-transparent border-transparent py-5"
+          ? "bg-white/90 backdrop-blur-xl border-b border-[var(--border)] py-4"
+          : "bg-white/80 backdrop-blur-lg border-b border-transparent py-5"
       )}
     >
-      <nav className="container mx-auto px-6 flex items-center justify-between">
+      <nav className="container max-w-6xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <Link 
           href="/" 
-          className="text-2xl font-serif tracking-tight text-[var(--foreground)] hover:opacity-80 transition-opacity"
+          className="text-xl font-heading font-bold text-[var(--foreground)] hover:opacity-80 transition-opacity"
         >
-          BrightMind<span className="text-[#aff33e]">.</span>
+          BrightMind<span className="text-[var(--primary)]">.</span>
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-[var(--foreground)] hover:text-[#aff33e] transition-colors"
+              className="text-sm font-body font-medium text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
             >
               {link.name}
             </Link>
           ))}
           
-          <div className="h-4 w-[1px] bg-[var(--border)] mx-2" />
-          
-          <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="p-2 rounded-full hover:bg-[var(--muted)] transition-colors text-[var(--foreground)]"
-            aria-label="Toggle dark mode"
-          >
-            {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
-          
-          <Link href="/book">
-            <Button size="sm">Get Started</Button>
+          <Link href="#contact-form">
+            <button className="bg-[var(--dark)] text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-[var(--foreground)]/90 active:scale-[0.98] transition-all">
+              Get Started
+            </button>
           </Link>
         </div>
 
         {/* Mobile Toggle */}
         <div className="flex md:hidden items-center gap-4">
           <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="p-2 rounded-full hover:bg-[var(--muted)] transition-colors text-[var(--foreground)]"
-          >
-            {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
-          <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-[var(--foreground)]"
+            className="text-[var(--foreground)]"
           >
-            {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </nav>
@@ -96,23 +74,25 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div 
         className={cn(
-          "md:hidden absolute top-full left-0 right-0 bg-[var(--background)] border-b border-[var(--border)] transition-all duration-300 overflow-hidden",
+          "md:hidden absolute top-full left-0 right-0 bg-white border-b border-[var(--border)] transition-all duration-300 overflow-hidden",
           mobileMenuOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
         )}
       >
-        <div className="flex flex-col gap-4 p-6">
+        <div className="flex flex-col gap-6 p-6">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="text-lg font-medium text-[var(--foreground)] hover:text-[#aff33e]"
+              className="text-lg font-body font-medium text-[var(--muted)] hover:text-[var(--foreground)]"
               onClick={() => setMobileMenuOpen(false)}
             >
               {link.name}
             </Link>
           ))}
-          <Link href="/book" onClick={() => setMobileMenuOpen(false)}>
-            <Button className="w-full">Get Started</Button>
+          <Link href="#contact-form" onClick={() => setMobileMenuOpen(false)}>
+            <button className="w-full bg-[var(--dark)] text-white font-medium px-5 py-3 rounded-full hover:bg-[var(--foreground)]/90 transition-all">
+              Get Started
+            </button>
           </Link>
         </div>
       </div>

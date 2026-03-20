@@ -48,9 +48,9 @@ const BookingPage = () => {
                 className={cn(
                   "w-12 h-12 rounded-2xl flex items-center justify-center font-bold text-lg border-2 transition-all duration-300",
                   step === s.id 
-                    ? "bg-[#aff33e] text-black border-[#aff33e] shadow-lg shadow-[#aff33e]/20 scale-110" 
+                    ? "bg-accent text-black border-accent shadow-lg shadow-accent/20 scale-110" 
                     : step > s.id 
-                      ? "bg-black text-[#aff33e] border-black" 
+                      ? "bg-black text-accent border-black" 
                       : "bg-[var(--card)] text-[var(--muted-foreground)] border-[var(--border)]"
                 )}
               >
@@ -78,8 +78,8 @@ const BookingPage = () => {
                         className={cn(
                           "px-6 py-3 rounded-2xl border-2 font-bold transition-all",
                           selectedSubject === sub.label 
-                            ? "bg-[#aff33e] border-[#aff33e] text-black shadow-md" 
-                            : "bg-[var(--card)] border-[var(--border)] text-[var(--foreground)] hover:border-[#aff33e]/30"
+                            ? "bg-accent border-accent text-black shadow-md" 
+                            : "bg-[var(--card)] border-[var(--border)] text-[var(--foreground)] hover:border-accent/30"
                         )}
                       >
                         {sub.icon} {sub.label}
@@ -98,8 +98,8 @@ const BookingPage = () => {
                         className={cn(
                           "flex items-center gap-4 p-4 rounded-3xl border-2 text-left transition-all",
                           selectedTutor === tutor.id 
-                            ? "bg-[var(--accent)] border-[#aff33e] shadow-md" 
-                            : "bg-[var(--card)] border-[var(--border)] hover:border-[#aff33e]/30"
+                            ? "bg-[var(--accent)] border-accent shadow-md" 
+                            : "bg-[var(--card)] border-[var(--border)] hover:border-accent/30"
                         )}
                       >
                         <div className="w-16 h-16 rounded-2xl overflow-hidden shadow-sm border border-[var(--border)] shrink-0">
@@ -109,7 +109,7 @@ const BookingPage = () => {
                           <h4 className="font-bold font-serif text-lg leading-tight">{tutor.name}</h4>
                           <p className="text-sm text-[var(--muted-foreground)]">{tutor.subject} • ${tutor.ratePerHour}/hr</p>
                         </div>
-                        {selectedTutor === tutor.id && <div className="p-2 bg-[#aff33e] text-black rounded-full shadow-sm"><Check size={16} /></div>}
+                        {selectedTutor === tutor.id && <div className="p-2 bg-accent text-black rounded-full shadow-sm"><Check size={16} /></div>}
                       </button>
                     ))}
                   </div>
@@ -132,8 +132,8 @@ const BookingPage = () => {
                         className={cn(
                           "aspect-square flex items-center justify-center rounded-2xl font-mono text-lg transition-all",
                           selectedDate === d 
-                            ? "bg-[#aff33e] text-black font-black shadow-lg scale-110" 
-                            : "bg-[var(--card)] border border-[var(--border)] text-[var(--foreground)] hover:border-[#aff33e]/50"
+                            ? "bg-accent text-black font-black shadow-lg scale-110" 
+                            : "bg-[var(--card)] border border-[var(--border)] text-[var(--foreground)] hover:border-accent/50"
                         )}
                       >
                         {d}
@@ -152,8 +152,8 @@ const BookingPage = () => {
                         className={cn(
                           "flex mb-3 items-center justify-center gap-3 py-4 rounded-2xl border-2 font-bold transition-all",
                           selectedTime === t 
-                            ? "bg-black text-[#aff33e] border-black shadow-md" 
-                            : "bg-[var(--card)] border-[var(--border)] text-[var(--foreground)] hover:border-[#aff33e]/30"
+                            ? "bg-black text-accent border-black shadow-md" 
+                            : "bg-[var(--card)] border-[var(--border)] text-[var(--foreground)] hover:border-accent/30"
                         )}
                       >
                         <Clock size={18} />
@@ -167,7 +167,7 @@ const BookingPage = () => {
 
             {step === 3 && (
               <div className="flex flex-col gap-8 animate-in fade-in slide-in-from-right-4 duration-500">
-                <div className="p-10 bg-[var(--accent)] border-2 border-[#aff33e]/30 rounded-[2rem] flex flex-col gap-8">
+                <div className="p-10 bg-[var(--accent)] border-2 border-accent/30 rounded-[2rem] flex flex-col gap-8">
                   <h3 className="text-3xl font-serif text-black">Booking Confirmation</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="flex flex-col gap-2">
@@ -195,7 +195,7 @@ const BookingPage = () => {
                       <span className="text-xs font-bold uppercase tracking-[0.2em] text-black/50">Total Amount</span>
                       <div className="text-5xl font-mono font-black text-black">${selectedTutorData?.ratePerHour}<span className="text-xl opacity-50">.00</span></div>
                     </div>
-                    <Badge variant="secondary" className="bg-black text-[#aff33e] h-10 px-6 text-sm flex items-center gap-2">
+                    <Badge variant="secondary" className="bg-black text-accent h-10 px-6 text-sm flex items-center gap-2">
                       <CreditCard size={16} /> Secure Payment
                     </Badge>
                   </div>
@@ -212,7 +212,7 @@ const BookingPage = () => {
                       </div>
                       <div className="w-6 h-6 rounded-full bg-black flex items-center justify-center text-white"><Check size={14} strokeWidth={4} /></div>
                     </button>
-                    <button className="flex items-center gap-4 p-6 rounded-3xl border-2 border-[var(--border)] hover:border-[#aff33e]/50 transition-all text-left">
+                    <button className="flex items-center gap-4 p-6 rounded-3xl border-2 border-[var(--border)] hover:border-accent/50 transition-all text-left">
                        <div className="w-12 h-8 bg-black/10 rounded-md flex items-center justify-center text-[8px] font-black italic">NEW</div>
                       <div className="flex-grow">
                         <h4 className="font-bold text-[var(--foreground)] opacity-60">Add New Card</h4>
@@ -234,7 +234,7 @@ const BookingPage = () => {
               <Button 
                 size="lg" 
                 onClick={() => step < 3 ? setStep(s => s + 1) : alert('Booking Confirmed!')}
-                className="rounded-2xl px-12 h-16 text-xl font-bold shadow-xl shadow-[#aff33e]/20"
+                className="rounded-2xl px-12 h-16 text-xl font-bold shadow-xl shadow-accent/20"
                 disabled={(step === 1 && !selectedTutor) || (step === 2 && (!selectedDate || !selectedTime))}
               >
                 {step === 3 ? 'Confirm & Secure Pay' : 'Continue'} <ChevronRight className="ml-2" size={24} />
@@ -248,7 +248,7 @@ const BookingPage = () => {
              <Card className="rounded-[2rem] border-2 border-[var(--border)] overflow-hidden">
                 <CardHeader className="p-8 bg-[var(--muted)] border-b border-[var(--border)]">
                   <h3 className="text-xl font-black font-serif uppercase tracking-widest flex items-center gap-3">
-                    <Sparkle size={20} className="text-[#aff33e]" />
+                    <Sparkle size={20} className="text-accent" />
                     Summary
                   </h3>
                 </CardHeader>

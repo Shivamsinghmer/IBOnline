@@ -1,48 +1,54 @@
 import React from "react";
 import { testimonials } from "@/lib/data";
-import { Card, CardContent } from "@/components/ui/Card";
-import { Quote } from "lucide-react";
+import { Star } from "lucide-react";
 
 const Testimonials = () => {
   return (
-    <section id="testimonials" className="py-24 bg-[var(--background)] relative overflow-hidden">
-      {/* Background Decorative Element */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] bg-[#aff33e]/5 rounded-full blur-[150px] pointer-events-none" />
+    <section id="testimonials" className="py-24 bg-[var(--surface-2)] overflow-hidden">
+      <div className="container max-w-6xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-[var(--foreground)] mb-6">Success Stories</h2>
+          <p className="text-base font-body text-[var(--muted)] max-w-2xl mx-auto leading-relaxed">
+            Testimonials from real students who unlocked their potential with our tutors 
+            and achieved substantial improvement in their grades and confidence.
+          </p>
+        </div>
 
-      <div className="container mx-auto px-6 relative z-10 text-center">
-        <h2 className="text-4xl md:text-6xl font-serif mb-12">Success Stories</h2>
-        <p className="text-xl text-[var(--muted-foreground)] max-w-2xl mx-auto mb-20 text-center">
-          Hear from students who have unlocked their potential with our tutors. 
-          Real results from dedicated learners.
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.slice(0, 3).map((testimonial) => (
-            <Card key={testimonial.id} className="text-left bg-[var(--card)] hover:border-[#aff33e]/30 transition-all duration-500 shadow-xl border border-[var(--border)] rounded-3xl">
-              <CardContent className="p-10 flex flex-col items-start gap-8">
-                <div className="p-4 bg-[var(--accent)] rounded-2xl">
-                  <Quote size={40} className="text-[#aff33e] fill-current opacity-80" />
-                </div>
-                
-                <p className="text-xl md:text-2xl font-serif italic text-[var(--foreground)] leading-relaxed">
-                  "{testimonial.quote}"
-                </p>
+            <div 
+              key={testimonial.id} 
+              className="bg-white rounded-2xl p-7 border border-[var(--border)] hover:-translate-y-1 hover:shadow-lg hover:border-[var(--primary)] transition-all duration-300 flex flex-col items-start h-full"
+            >
+              {/* Star Rating */}
+              <div className="flex items-center gap-1 mb-6">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={14} className="fill-[var(--primary)] text-[var(--primary)]" />
+                ))}
+              </div>
+              
+              <p className="text-[15px] font-body text-[var(--foreground)] leading-relaxed mb-10 flex-grow font-normal">
+                {testimonial.quote}
+              </p>
 
-                <div className="flex items-center gap-4 pt-6 border-t border-[var(--border)] w-full">
-                  <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[var(--primary)]/20 shadow-sm">
-                    <img 
-                      src={testimonial.avatar} 
-                      alt={testimonial.studentName} 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h4 className="text-lg text-[var(--foreground)] font-serif leading-tight">{testimonial.studentName}</h4>
-                    <p className="text-sm font-medium text-[#aff33e] uppercase tracking-wider">{testimonial.grade}</p>
-                  </div>
+              <div className="w-full border-t border-[var(--border)] pt-5 flex items-center gap-3">
+                <div className="relative w-9 h-9 min-w-[36px] rounded-full overflow-hidden border border-[var(--border)] shadow-sm">
+                  <img 
+                    src={testimonial.avatar} 
+                    alt={testimonial.studentName} 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-              </CardContent>
-            </Card>
+                <div className="flex flex-col">
+                  <span className="text-sm font-body font-semibold text-[var(--foreground)] leading-tight">
+                    {testimonial.studentName}
+                  </span>
+                  <span className="text-xs font-body text-[var(--muted)]">
+                    {testimonial.grade}
+                  </span>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>

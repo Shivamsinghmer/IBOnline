@@ -12,7 +12,7 @@ const TutorFilters = () => {
       {/* Search */}
       <div className="flex flex-col gap-4">
         <label className="text-lg font-bold font-serif flex items-center gap-2">
-          <Search size={20} className="text-[#aff33e]" />
+          <Search size={20} className="text-accent" />
           Search
         </label>
         <Input placeholder="By name or keyword..." className="h-14 rounded-2xl border-2 focus-visible:ring-offset-0" />
@@ -21,13 +21,13 @@ const TutorFilters = () => {
       {/* Subjects */}
       <div className="flex flex-col gap-4">
         <label className="text-lg font-bold font-serif flex items-center gap-2">
-          <Filter size={18} className="text-[#aff33e]" />
+          <Filter size={18} className="text-accent" />
           Subjects
         </label>
         <div className="grid grid-cols-2 lg:grid-cols-1 gap-3">
           {subjects.map((subject) => (
-            <label key={subject.id} className="group flex items-center gap-3 cursor-pointer p-3 rounded-xl border border-[var(--border)] hover:border-[#aff33e] hover:bg-[#aff33e]/5 transition-all">
-              <input type="checkbox" className="w-5 h-5 accent-[#aff33e] rounded-md transition-colors" />
+            <label key={subject.id} className="group flex items-center gap-3 cursor-pointer p-3 rounded-xl border border-[var(--border)] hover:border-accent hover:bg-accent/5 transition-all">
+              <input type="checkbox" className="w-5 h-5 accent-accent rounded-md transition-colors" />
               <span className="text-sm font-medium text-[var(--foreground)]">{subject.label}</span>
             </label>
           ))}
@@ -37,7 +37,7 @@ const TutorFilters = () => {
       {/* Price Range */}
       <div className="flex flex-col gap-4">
         <label className="text-lg font-bold font-serif flex items-center gap-2">
-          <SlidersHorizontal size={18} className="text-[#aff33e]" />
+          <SlidersHorizontal size={18} className="text-accent" />
           Price Range
         </label>
         <div className="flex items-center gap-4">
@@ -50,12 +50,12 @@ const TutorFilters = () => {
       {/* Minimum Rating */}
       <div className="flex flex-col gap-4">
         <label className="text-lg font-bold font-serif flex items-center gap-2">
-          <Star size={18} className="text-[#aff33e]" />
+          <Star size={18} className="text-accent" />
           Minimum Rating
         </label>
         <div className="flex flex-wrap gap-2">
           {[4.5, 4.0, 3.5, 3.0].map((rating) => (
-            <Button key={rating} variant="outline" size="sm" className="rounded-full border-[#aff33e]/30 hover:bg-[#aff33e]/10">
+            <Button key={rating} variant="outline" size="sm" className="rounded-full border-accent/30 hover:bg-accent/10">
               {rating}+ Stars
             </Button>
           ))}
@@ -63,7 +63,7 @@ const TutorFilters = () => {
       </div>
 
       {/* Quick Filters */}
-      <div className="p-6 bg-[var(--accent)] border border-[#aff33e]/20 rounded-3xl mt-4">
+      <div className="p-6 bg-[var(--accent)] border border-accent/20 rounded-3xl mt-4">
         <h4 className="font-bold text-black mb-4">Availability</h4>
         <label className="flex items-center gap-3 cursor-pointer group">
           <input type="checkbox" className="w-5 h-5 accent-black" defaultChecked />

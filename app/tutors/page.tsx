@@ -23,7 +23,7 @@ const TutorsPage = () => {
         {/* Header */}
         <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif mb-6">Find Your Perfect <br className="hidden md:block" /> Tutor<span className="text-[#aff33e]">.</span></h1>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif mb-6">Find Your Perfect <br className="hidden md:block" /> Tutor<span className="text-accent">.</span></h1>
             <p className="text-xl text-[var(--muted-foreground)] max-w-xl">
               Discover world-class educators from our community of 500+ experts. 
               Filter by subject, price, and rating to find your match.
@@ -82,7 +82,7 @@ const TutorsPage = () => {
                     className={cn(
                       "h-12 w-12 p-0 rounded-2xl font-bold font-mono transition-all",
                       currentPage === i + 1 
-                        ? 'bg-[#aff33e] text-black shadow-lg scale-110' 
+                        ? 'bg-accent text-black shadow-lg scale-110' 
                         : 'bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] hover:bg-[var(--muted)]'
                     )}
                     onClick={() => setCurrentPage(i + 1)}

@@ -11,7 +11,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const baseStyles = "inline-flex items-center justify-center rounded-[var(--radius)] font-semibold transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] disabled:opacity-50 disabled:pointer-events-none";
     
     const variants = {
-      primary: "bg-[#aff33e] text-black hover:brightness-110 shadow-sm",
+      primary: "bg-accent text-black hover:brightness-110 shadow-sm",
       secondary: "bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:bg-[var(--secondary)]/90 shadow-sm",
       ghost: "bg-transparent hover:bg-[var(--muted)] text-[var(--foreground)]",
       outline: "bg-transparent border border-[var(--border)] hover:bg-[var(--muted)] text-[var(--foreground)]",

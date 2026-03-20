@@ -1,82 +1,81 @@
 import React from "react";
-import Image from "next/image";
-import { Search, Calendar, GraduationCap } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { PenLine, PhoneCall, CalendarPlus, CreditCard } from "lucide-react";
 
 const steps = [
   {
-    number: "01",
-    title: "Browse Tutors",
-    description: "Search through our curated list of 500+ expert tutors. Filter by subject, price range, and student reviews to find your perfect match.",
-    icon: <Search className="w-8 h-8 text-[#aff33e]" />,
-    image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=800",
+    number: "1",
+    title: "Fill the engagement form",
+    description: "Start by filling out our quick engagement form with your details, current grade level, and the subjects you need help with.",
+    icon: <PenLine size={20} />,
+    image: "https://images.unsplash.com/photo-1555421689-d68471e189f2?auto=format&fit=crop&q=80&w=800",
   },
   {
-    number: "02",
-    title: "Book a Session",
-    description: "Pick a date and time that fits your schedule. Our easy booking system handles everything, including secure payments and reminders.",
-    icon: <Calendar className="w-8 h-8 text-[#aff33e]" />,
-    image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80&w=800",
+    number: "2",
+    title: "Connect with a counselor",
+    description: "Speak with an academic counselor to dive deeper into your learning needs, goals, and schedule so we can match you perfectly.",
+    icon: <PhoneCall size={20} />,
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800",
   },
   {
-    number: "03",
-    title: "Start Learning",
-    description: "Connect with your tutor via our interactive virtual classroom. Access collaborative whiteboards, screen sharing, and recorded sessions.",
-    icon: <GraduationCap className="w-8 h-8 text-[#aff33e]" />,
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800",
+    number: "3",
+    title: "Book a free trial class",
+    description: "Experience our teaching firsthand by booking a free trial class with your specially assigned IB expert tutor.",
+    icon: <CalendarPlus size={20} />,
+    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    number: "4",
+    title: "Pay for subsequent engagement",
+    description: "If you're completely satisfied with your trial, securely pay for your upcoming sessions and start your journey to academic excellence.",
+    icon: <CreditCard size={20} />,
+    image: "https://images.unsplash.com/photo-1556740714-a8395b3bf30f?auto=format&fit=crop&q=80&w=800",
   },
 ];
 
 const HowItWorks = () => {
   return (
-    <section id="how-it-works" className="py-24 bg-[var(--background)] overflow-hidden">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col items-center text-center mb-20">
-          <h2 className="text-4xl md:text-6xl font-serif mb-6">How It Works</h2>
-          <p className="text-xl text-[var(--muted-foreground)] max-w-2xl">
-            Success is just three simple steps away. Our streamlined process 
+    <section id="how-it-works" className="py-24 bg-white overflow-hidden">
+      <div className="container max-w-6xl mx-auto px-6">
+        <div className="flex flex-col items-center text-center mb-16 px-6">
+          <span className="text-[10px] uppercase tracking-[0.2em] text-[var(--primary-dark)] font-semibold mb-3">
+            Our Process
+          </span>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-[var(--foreground)] mb-4">How It Works</h2>
+          <p className="text-base font-body text-[var(--muted)] max-w-md mx-auto leading-relaxed">
+            Success is just four simple steps away. Our streamlined process 
             makes finding and working with expert tutors effortless.
           </p>
         </div>
 
-        <div className="flex flex-col gap-32">
-          {steps.map((step, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          {steps.map((step) => (
             <div 
               key={step.number} 
-              className={cn(
-                "flex flex-col gap-12 items-center",
-                index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-              )}
+              className="bg-[var(--background)] rounded-2xl p-8 border border-[var(--border)] hover:border-[var(--primary)] hover:shadow-[0_8px_30px_rgba(168,232,50,0.15)] transition-all duration-300 relative overflow-hidden group"
             >
-              <div className="flex-1 relative">
-                {/* Large Background Number */}
-                <span className="absolute -top-16 -left-8 text-[12rem] md:text-[16rem] font-serif text-[#aff33e]/10 pointer-events-none select-none">
-                  {step.number}
-                </span>
-                
-                <div className="relative z-10 flex flex-col gap-6">
-                  <div className="w-16 h-16 bg-[var(--card)] border border-[var(--border)] rounded-2xl flex items-center justify-center shadow-md">
-                    {step.icon}
-                  </div>
-                  <h3 className="text-3xl md:text-5xl font-serif">{step.title}</h3>
-                  <p className="text-lg md:text-xl text-[var(--muted-foreground)] leading-relaxed max-w-lg">
-                    {step.description}
-                  </p>
-                </div>
+              {/* Step number Watermark */}
+              <span className="absolute top-4 right-6 font-heading text-8xl font-bold text-[var(--border)] opacity-30 select-none pointer-events-none group-hover:opacity-10 transition-opacity">
+                {step.number}
+              </span>
+
+              {/* Icon chip */}
+              <div className="w-10 h-10 rounded-xl bg-[var(--primary-light)] flex items-center justify-center text-[#3d6b00] mb-6 shadow-sm">
+                {step.icon}
               </div>
 
-              <div className="flex-1 w-full relative group">
-                {/* Decorative Elements */}
-                <div className="absolute inset-0 bg-[#aff33e] rounded-[var(--radius)] translate-x-4 translate-y-4 -z-10 transition-transform group-hover:translate-x-6 group-hover:translate-y-6" />
-                <div className="relative aspect-[4/3] rounded-[var(--radius)] overflow-hidden border-2 border-[var(--border)] shadow-xl">
-                  <img 
-                    src={step.image} 
-                    alt={step.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)]/40 to-transparent" />
-                </div>
+              <h3 className="text-2xl font-heading font-semibold text-[var(--foreground)] mb-3 relative z-10">
+                {step.title}
+              </h3>
+              <p className="text-[15px] font-body text-[var(--muted)] leading-relaxed mb-6 relative z-10">
+                {step.description}
+              </p>
+
+              <div className="relative aspect-video rounded-xl overflow-hidden shadow-sm border border-[var(--border)]">
+                <img 
+                  src={step.image} 
+                  alt={step.title}
+                  className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                />
               </div>
             </div>
           ))}

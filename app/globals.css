@@ -1,86 +1,109 @@
-@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Fjalla+One&display=swap');
 @import "tailwindcss";
-@custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #fbfcf8;
-  --foreground: #0f172a;
-  --card: #ffffff;
-  --card-foreground: #0f172a;
-  --primary: #aff33e;
-  --primary-foreground: #000000;
-  --secondary: #334155;
-  --secondary-foreground: #f8fafc;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #f0fdf4;
-  --accent-foreground: #166534;
-  --border: #e2e8f0;
-  --radius: 1rem;
-  --font-sans: "Arimo", sans-serif;
-  --font-serif: "Fjalla One", sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-}
+  --background: #f9faf7;
+  --foreground: #111827;
+  --primary: #a8e832;
+  --primary-dark: #7ab818;
+  --primary-light: #edfac8;
+  --surface: #ffffff;
+  --surface-2: #f3f4f0;
+  --muted: #6b7280;
+  --border: #e5e7e3;
+  --dark: #111827;
 
-.dark {
-  --background: #020617;
-  --foreground: #f8fafc;
-  --card: #0f172a;
-  --primary: #aff33e;
-  --primary-foreground: #000000;
-  --secondary: #1e293b;
-  --muted: #1e293b;
-  --muted-foreground: #94a3b8;
-  --border: #1e293b;
+  --font-heading: 'Fraunces', Georgia, serif;
+  --font-body: 'Geist', system-ui, sans-serif;
+  
+  --radius: 1rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-card: var(--card);
   --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-light: var(--primary-light);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
-  --color-accent: var(--accent);
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
+  --color-dark: var(--dark);
+
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+
   --radius-sm: calc(var(--radius) - 4px);
-  
-  --font-serif: var(--font-serif);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 16px);
 }
 
 @layer base {
-  * { @apply border-border; }
-  body { 
-    @apply bg-background text-foreground font-sans;
-    font-family: var(--font-sans);
-  }
-  h1, h2, h3, h4, h5, h6 { 
-    @apply font-serif;
-    font-family: var(--font-serif);
-    font-weight: 400;
+  * {
+    @apply border-border outline-primary/50;
   }
   
-  .scrollbar-none::-webkit-scrollbar {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+  }
+  
+  h1, h2, h3, h4 { 
+    @apply font-heading font-bold text-foreground;
+  }
+  
+  p, span, a, button, input, label, select {
+    @apply font-body;
+  }
+
+  ::selection { 
+    @apply bg-primary-light text-dark;
+  }
+
+  *:focus-visible { 
+    outline: 2px solid var(--primary); 
+    outline-offset: 2px; 
+    border-radius: 4px; 
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
-  .scrollbar-none {
+  .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
 }
 
-@keyframes float {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(20px, -20px) scale(1.1); }
-  100% { transform: translate(-10px, 10px) scale(0.95); }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.animate-float {
-  animation: float 8s ease-in-out infinite alternate;
+.animate-fade-up { 
+  opacity: 0;
+  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }

@@ -23,13 +23,13 @@ const Pricing = () => {
               className={cn(
                 "relative h-full flex flex-col items-center text-center rounded-[2rem] border-2",
                 plan.highlight 
-                  ? "bg-[#aff33e] border-[#aff33e] shadow-2xl scale-105 z-20" 
+                  ? "bg-accent border-accent shadow-2xl scale-105 z-20" 
                   : "bg-[var(--card)] border-[var(--border)] shadow-md"
               )}
               hover={!plan.highlight}
             >
               {plan.highlight && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-black text-[#aff33e] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-2 shadow-lg">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-black text-accent px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-2 shadow-lg">
                   <Star fill="currentColor" size={14} />
                   Most Popular
                 </div>
@@ -54,7 +54,7 @@ const Pricing = () => {
                 <ul className="flex flex-col gap-6 w-full">
                   {plan.features.map((feature) => (
                     <li key={feature} className={cn("flex items-center gap-4 text-left transition-transform", plan.highlight ? "text-black" : "text-[var(--foreground)]")}>
-                      <div className={cn("p-1 rounded-full", plan.highlight ? "bg-black/10 text-black" : "bg-[var(--accent)] text-[#aff33e]")}>
+                      <div className={cn("p-1 rounded-full", plan.highlight ? "bg-black/10 text-black" : "bg-[var(--accent)] text-accent")}>
                         <Check size={18} strokeWidth={3} />
                       </div>
                       <span className="font-medium text-lg">{feature}</span>
@@ -69,8 +69,8 @@ const Pricing = () => {
                   className={cn(
                     "w-full h-16 text-lg font-bold rounded-2xl transition-all shadow-lg",
                     plan.highlight 
-                      ? "bg-black text-[#aff33e] hover:bg-black/90 active:scale-95 border-b-4 border-black/20" 
-                      : "bg-[#aff33e] text-black hover:brightness-110 active:scale-95"
+                      ? "bg-black text-accent hover:bg-black/90 active:scale-95 border-b-4 border-black/20" 
+                      : "bg-accent text-black hover:brightness-110 active:scale-95"
                   )}
                 >
                   Choose {plan.name}

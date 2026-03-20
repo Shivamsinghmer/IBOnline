@@ -20,9 +20,9 @@ const TutorGrid = () => {
               university professors, and industry experts.
             </p>
           </div>
-          <Link href="/tutors" className="group flex items-center gap-3 text-lg font-bold text-[var(--foreground)] hover:text-[#aff33e] transition-colors">
+          <Link href="/tutors" className="group flex items-center gap-3 text-lg font-bold text-[var(--foreground)] hover:text-accent transition-colors">
             View All 500+ Tutors
-            <div className="p-3 rounded-full bg-[var(--muted)] group-hover:bg-[#aff33e] group-hover:text-black transition-all">
+            <div className="p-3 rounded-full bg-[var(--muted)] group-hover:bg-accent group-hover:text-black transition-all">
               <ArrowRight size={20} />
             </div>
           </Link>
