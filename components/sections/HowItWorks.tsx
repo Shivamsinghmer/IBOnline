@@ -5,29 +5,29 @@ const steps = [
   {
     number: "1",
     title: "Fill the engagement form",
-    description: "Start by filling out our quick engagement form with your details, current grade level, and the subjects you need help with.",
-    icon: <PenLine size={20} />,
+    description: "Tell us about yourself, your grade level, and the subjects you're struggling with.",
+    icon: <PenLine size={24} />,
     image: "https://images.unsplash.com/photo-1555421689-d68471e189f2?auto=format&fit=crop&q=80&w=800",
   },
   {
     number: "2",
     title: "Connect with a counselor",
-    description: "Speak with an academic counselor to dive deeper into your learning needs, goals, and schedule so we can match you perfectly.",
-    icon: <PhoneCall size={20} />,
+    description: "Chat with a friendly counselor who'll listen to your goals and find the right tutor.",
+    icon: <PhoneCall size={24} />,
     image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800",
   },
   {
     number: "3",
     title: "Book a free trial class",
-    description: "Experience our teaching firsthand by booking a free trial class with your specially assigned IB expert tutor.",
-    icon: <CalendarPlus size={20} />,
+    description: "Try a live class with your matched tutor — completely free, no strings attached.",
+    icon: <CalendarPlus size={24} />,
     image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800",
   },
   {
     number: "4",
     title: "Pay for subsequent engagement",
-    description: "If you're completely satisfied with your trial, securely pay for your upcoming sessions and start your journey to academic excellence.",
-    icon: <CreditCard size={20} />,
+    description: "Happy with your trial? Pay for sessions and start making real progress today.",
+    icon: <CreditCard size={24} />,
     image: "https://images.unsplash.com/photo-1556740714-a8395b3bf30f?auto=format&fit=crop&q=80&w=800",
   },
 ];
@@ -54,12 +54,12 @@ const HowItWorks = () => {
               className="bg-[var(--background)] rounded-2xl p-8 border border-[var(--border)] hover:border-[var(--primary)] hover:shadow-[0_8px_30px_rgba(168,232,50,0.15)] transition-all duration-300 relative overflow-hidden group"
             >
               {/* Step number Watermark */}
-              <span className="absolute top-4 right-6 font-heading text-8xl font-bold text-[var(--border)] opacity-30 select-none pointer-events-none group-hover:opacity-10 transition-opacity">
+              <span className="absolute -top-10 -right-6 font-heading text-[12rem] font-bold text-[var(--primary)] opacity-[0.08] select-none pointer-events-none group-hover:opacity-15 transition-all duration-500">
                 {step.number}
               </span>
 
               {/* Icon chip */}
-              <div className="w-10 h-10 rounded-xl bg-[var(--primary-light)] flex items-center justify-center text-[#3d6b00] mb-6 shadow-sm">
+              <div className="w-14 h-14 rounded-2xl bg-[var(--primary)] flex items-center justify-center text-[var(--foreground)] mb-8 shadow-[0_8px_30px_rgba(168,232,50,0.3)] group-hover:scale-110 transition-all duration-300">
                 {step.icon}
               </div>
 

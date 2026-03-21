@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { Play } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -19,7 +18,7 @@ const Hero = () => {
           className="inline-flex items-center gap-2 bg-[var(--primary-light)] text-[#3d6b00] text-xs font-semibold px-4 py-1.5 rounded-full mb-8 animate-fade-up"
           style={{ animationDelay: "0ms" }}
         >
-          <span>✦ Trusted by 10,000+ Students</span>
+          <span>✦ Trusted by Students Worldwide 🌎</span>
         </div>
 
         {/* Headline */}
@@ -61,9 +60,11 @@ const Hero = () => {
               Get Started Now <span>→</span>
             </button>
           </Link>
-          <button className="w-full sm:w-auto bg-white border border-[var(--border)] text-[var(--foreground)] rounded-full px-10 py-4 font-medium text-base hover:border-[var(--primary)] transition-all duration-200 flex items-center justify-center gap-2">
-            <Play size={16} fill="currentColor" /> Watch Demo
-          </button>
+          <Link href="#how-it-works" className="w-full sm:w-auto">
+            <button className="w-full sm:w-auto bg-white border border-[var(--border)] text-[var(--foreground)] rounded-full px-10 py-4 font-medium text-base hover:border-[var(--primary)] transition-all duration-200 flex items-center justify-center gap-2">
+              Learn More <span>↓</span>
+            </button>
+          </Link>
         </div>
 
         {/* Trust Badges */}
@@ -72,7 +73,7 @@ const Hero = () => {
           style={{ animationDelay: "400ms" }}
         >
           {[
-            { label: "500+ Expert Tutors", sub: "Verified Skills" },
+            { label: "Expert Tutors", sub: "Verified Credentials" },
             { label: "Guaranteed Success", sub: "Grade Improvement" },
             { label: "IB Resources", sub: "Practice Papers" },
           ].map((stat, i) => (

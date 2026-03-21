@@ -7,29 +7,12 @@ const Footer = () => {
 
   const footerLinks = [
     {
-      title: "Company",
+      title: "Quick Links",
       links: [
-        { name: "About Us", href: "/#about" },
-        { name: "How It Works", href: "/#how-it-works" },
-        { name: "Subjects", href: "/#subjects" },
-        { name: "Contact", href: "/#contact-form" },
-      ],
-    },
-    {
-      title: "Resources",
-      links: [
-        { name: "Success Stories", href: "/#testimonials" },
-        { name: "Free Guides", href: "/guides" },
-        { name: "Tutor Login", href: "/auth/tutor" },
-        { name: "Parent Login", href: "/auth/parent" },
-      ],
-    },
-    {
-      title: "Legal",
-      links: [
-        { name: "Terms", href: "/terms" },
-        { name: "Privacy", href: "/privacy" },
-        { name: "Cookies", href: "/cookies" },
+        { name: "Subjects", href: "#subjects" },
+        { name: "How It Works", href: "#how-it-works" },
+        { name: "Success Stories", href: "#testimonials" },
+        { name: "Contact Us", href: "#contact-form" },
       ],
     },
   ];
@@ -37,17 +20,18 @@ const Footer = () => {
   return (
     <footer className="bg-[var(--dark)] pt-24 pb-12 overflow-hidden">
       <div className="container max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 mb-20">
           {/* Brand Column */}
-          <div className="flex flex-col items-start">
+          <div className="flex flex-col items-start lg:col-span-1">
             <Link 
               href="/" 
               className="text-xl font-heading font-bold text-white hover:opacity-80 transition-opacity"
             >
               BrightMind<span className="text-[var(--primary)]">.</span>
             </Link>
-            <p className="text-[#6b7280] font-body text-sm leading-relaxed max-w-[200px] mt-4">
-              Empowering students to reach their full potential through expert IB tutoring.
+            <p className="text-[#6b7280] font-body text-sm leading-relaxed max-w-xs mt-4">
+              Empowering students to reach their full potential through expert IB tutoring. 
+              Personalized sessions tailored to your curriculum and learning style.
             </p>
           </div>
 
@@ -71,6 +55,24 @@ const Footer = () => {
               </ul>
             </div>
           ))}
+
+          {/* Contact Column (NEW) */}
+          <div className="flex flex-col">
+            <h4 className="text-xs font-body font-semibold uppercase tracking-[0.2em] text-[#4b5563] mb-6">
+              Get in Touch
+            </h4>
+            <div className="flex flex-col gap-4">
+              <p className="text-sm font-body text-[#9ca3af]">
+                support@brightmind.com
+              </p>
+              <Link
+                href="#contact-form"
+                className="text-sm font-body text-[var(--primary)] hover:underline"
+              >
+                Book a Free Trial Class
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Bottom Bar */}
