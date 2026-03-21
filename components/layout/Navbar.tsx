@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -28,17 +29,24 @@ const Navbar = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-white/90 backdrop-blur-xl border-b border-[var(--border)] py-4"
-          : "bg-white/80 backdrop-blur-lg border-b border-transparent py-5"
+          ? "bg-white/90 backdrop-blur-xl border-b border-[var(--border)] py-3"
+          : "bg-white/80 backdrop-blur-lg border-b border-transparent py-4"
       )}
     >
       <nav className="container max-w-6xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <Link 
           href="/" 
-          className="text-xl font-heading font-bold text-[var(--foreground)] hover:opacity-80 transition-opacity"
+          className="relative flex items-center h-9 w-64 transition-opacity hover:opacity-80"
         >
-          BrightMind<span className="text-[var(--primary)]">.</span>
+          <Image 
+            src="/ibtutoringlogo.png" 
+            alt="IBMadeEasy Logo" 
+            width={256}
+            height={90}
+            className="h-20 w-auto object-contain"
+            priority
+          />
         </Link>
 
         {/* Desktop Nav */}

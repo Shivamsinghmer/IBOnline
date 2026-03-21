@@ -4,8 +4,8 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "BrightMind | Online Tutoring Services",
-  description: "Learn anything. From anyone. At your pace.",
+  title: "IBMadeEasy | Premier Online IB Tutoring",
+  description: "Simplifying the IB experience with expert tutoring tailored to your success.",
 };
 
 export default function RootLayout({

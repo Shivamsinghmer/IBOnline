@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Twitter, Linkedin, Instagram, Facebook } from "lucide-react";
 
 const Footer = () => {
@@ -15,23 +16,36 @@ const Footer = () => {
         { name: "Contact Us", href: "#contact-form" },
       ],
     },
+    {
+      title: "Legal",
+      links: [
+        { name: "Terms of Service", href: "/terms" },
+        { name: "Privacy Policy", href: "/privacy" },
+      ],
+    },
   ];
 
   return (
     <footer className="bg-[var(--dark)] pt-24 pb-12 overflow-hidden">
       <div className="container max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           {/* Brand Column */}
           <div className="flex flex-col items-start lg:col-span-1">
             <Link 
               href="/" 
-              className="text-xl font-heading font-bold text-white hover:opacity-80 transition-opacity"
+              className="relative flex items-center h-14 w-56 transition-opacity hover:opacity-80"
             >
-              BrightMind<span className="text-[var(--primary)]">.</span>
+              <Image 
+                src="/ibtutoringlogo.png" 
+                alt="IBMadeEasy Logo" 
+                width={224}
+                height={56}
+                className="h-25 w-auto object-contain brightness-0 invert"
+              />
             </Link>
             <p className="text-[#6b7280] font-body text-sm leading-relaxed max-w-xs mt-4">
-              Empowering students to reach their full potential through expert IB tutoring. 
-              Personalized sessions tailored to your curriculum and learning style.
+              Making IB excellence achievable for every student. 
+              Personalized tutoring that simplifies complex concepts.
             </p>
           </div>
 
@@ -63,7 +77,7 @@ const Footer = () => {
             </h4>
             <div className="flex flex-col gap-4">
               <p className="text-sm font-body text-[#9ca3af]">
-                support@brightmind.com
+                support@ibmadeeasy.com
               </p>
               <Link
                 href="#contact-form"
@@ -78,7 +92,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-[#1f2937] flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="text-xs font-body text-[#4b5563]">
-            &copy; {currentYear} BrightMind Learning Inc. All rights reserved.
+            &copy; {currentYear} IBMadeEasy Learning Inc. All rights reserved.
           </div>
           
           <div className="flex items-center gap-6">
