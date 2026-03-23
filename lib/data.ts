@@ -116,3 +116,41 @@ export const pricingPlans = [
     highlight: false,
   },
 ];
+
+export const tutors = [
+  {
+    id: 1,
+    name: "Dr. Robert Smith",
+    subject: "Mathematics AA HL",
+    ratePerHour: 60,
+    avatar: "https://i.pravatar.cc/150?u=robert",
+  },
+  {
+    id: 2,
+    name: "Prof. Sarah Johnson",
+    subject: "Chemistry HL",
+    ratePerHour: 55,
+    avatar: "https://i.pravatar.cc/150?u=sarah",
+  },
+  {
+    id: 3,
+    name: "Mark Wilson",
+    subject: "Physics SL",
+    ratePerHour: 45,
+    avatar: "https://i.pravatar.cc/150?u=mark",
+  },
+  {
+    id: 4,
+    name: "Emily Davis",
+    subject: "Economics HL",
+    ratePerHour: 50,
+    avatar: "https://i.pravatar.cc/150?u=emily",
+  },
+  {
+    id: 5,
+    name: "James Anderson",
+    subject: "Mathematics AI HL",
+    ratePerHour: 55,
+    avatar: "https://i.pravatar.cc/150?u=james",
+  },
+];

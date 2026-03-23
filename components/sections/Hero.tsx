@@ -56,13 +56,13 @@ const Hero = () => {
           style={{ animationDelay: "300ms" }}
         >
           <Link href="#contact-form" className="w-full sm:w-auto">
-            <button className="w-full sm:w-auto bg-[var(--primary)] text-[var(--dark)] rounded-full px-10 py-4 font-semibold text-base hover:bg-[var(--primary-dark)] hover:text-white transition-all duration-200 shadow-[0_4px_20px_rgba(168,232,50,0.4)] flex items-center justify-center gap-2">
-              Get Started<span>→</span>
+            <button className="w-full sm:w-auto bg-[var(--primary)] text-[var(--dark)] rounded-full px-10 py-4 font-semibold text-base hover:bg-[var(--primary-dark)] transition-all duration-200 shadow-[0_4px_20px_rgba(168,232,50,0.4)] flex items-center justify-center gap-2">
+              Get Started
             </button>
           </Link>
           <Link href="#how-it-works" className="w-full sm:w-auto">
-            <button className="w-full sm:w-auto bg-white border border-[var(--border)] text-[var(--foreground)] rounded-full px-10 py-4 font-medium text-base hover:border-[var(--primary)] transition-all duration-200 flex items-center justify-center gap-2">
-              Learn More <span>↓</span>
+            <button className="w-full sm:w-auto bg-[var(--primary)] text-[var(--dark)] rounded-full px-10 py-4 font-semibold text-base hover:bg-[var(--primary-dark)] transition-all duration-200 shadow-[0_4px_20px_rgba(168,232,50,0.4)] flex items-center justify-center gap-2">
+              Learn More
             </button>
           </Link>
         </div>
