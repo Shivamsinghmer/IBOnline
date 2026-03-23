@@ -35,13 +35,13 @@ const Navbar = () => {
     >
       <nav className="container max-w-6xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link 
-          href="/" 
+        <Link
+          href="/"
           className="relative flex items-center h-9 w-64 transition-opacity hover:opacity-80"
         >
-          <Image 
-            src="/ibtutoringlogo.png" 
-            alt="IBMadeEasy Logo" 
+          <Image
+            src="/ibtutoringlogo.png"
+            alt="IBMadeEasy Logo"
             width={256}
             height={90}
             className="h-20 w-auto object-contain"
@@ -60,7 +60,7 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
-          
+
           <Link href="#contact-form">
             <button className="bg-[var(--dark)] text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-[var(--foreground)]/90 active:scale-[0.98] transition-all">
               Get Started
@@ -80,7 +80,7 @@ const Navbar = () => {
       </nav>
 
       {/* Mobile Menu */}
-      <div 
+      <div
         className={cn(
           "md:hidden absolute top-full left-0 right-0 bg-white border-b border-[var(--border)] transition-all duration-300 overflow-hidden",
           mobileMenuOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"

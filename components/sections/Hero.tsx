@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <section className="relative min-h-[100dvh] pt-24 pb-12 flex flex-col items-center justify-center bg-[var(--background)]">
       {/* Subtle Radial Glow */}
-      <div 
+      <div
         className="absolute inset-x-0 top-0 h-full pointer-events-none opacity-40"
         style={{
           background: "radial-gradient(ellipse 80% 50% at 50% -10%, rgba(168,232,50,0.12) 0%, transparent 70%)",
@@ -14,7 +14,7 @@ const Hero = () => {
 
       <div className="container max-w-5xl mx-auto px-6 relative z-10 flex flex-col items-center text-center">
         {/* Eyebrow Badge */}
-        <div 
+        <div
           className="inline-flex items-center gap-2 bg-[var(--primary-light)] text-[#3d6b00] text-xs font-semibold px-4 py-1.5 rounded-full mb-8 animate-fade-up"
           style={{ animationDelay: "0ms" }}
         >
@@ -22,7 +22,7 @@ const Hero = () => {
         </div>
 
         {/* Headline */}
-        <h1 
+        <h1
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-[var(--foreground)] leading-[1.1] mb-6 tracking-tight animate-fade-up"
           style={{ animationDelay: "100ms", letterSpacing: "-0.02em" }}
         >
@@ -30,11 +30,11 @@ const Hero = () => {
           <span className="relative inline-block mt-2">
             <em className="italic not-italic font-bold font-heading text-[var(--foreground)]">top Tutors</em>
             <svg viewBox="0 0 200 8" className="absolute -bottom-1 left-0 w-full text-[var(--primary)] pointer-events-none" preserveAspectRatio="none">
-              <path 
-                d="M0 6 Q50 1 100 5 Q150 9 200 4" 
-                stroke="currentColor" 
-                strokeWidth="4" 
-                fill="none" 
+              <path
+                d="M0 6 Q50 1 100 5 Q150 9 200 4"
+                stroke="currentColor"
+                strokeWidth="4"
+                fill="none"
                 strokeLinecap="round"
               />
             </svg>
@@ -42,16 +42,16 @@ const Hero = () => {
         </h1>
 
         {/* Subheadline */}
-        <p 
+        <p
           className="text-base md:text-lg font-body text-[var(--muted)] max-w-xl mb-10 leading-relaxed animate-fade-up px-4"
           style={{ animationDelay: "200ms" }}
         >
-          One to one online tutoring sessions catering to your specific needs and learning style. 
+          One to one online tutoring sessions catering to your specific needs and learning style.
           Master the subject matter, practice the exam style questions and build confidence.
         </p>
 
         {/* CTAs */}
-        <div 
+        <div
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 w-full animate-fade-up px-6"
           style={{ animationDelay: "300ms" }}
         >
@@ -68,8 +68,8 @@ const Hero = () => {
         </div>
 
         {/* Trust Badges */}
-        <div 
-          className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 w-full animate-fade-up" 
+        <div
+          className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 w-full animate-fade-up"
           style={{ animationDelay: "400ms" }}
         >
           {[

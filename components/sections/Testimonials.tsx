@@ -77,7 +77,7 @@ const Testimonials = () => {
   const handleDragEnd = (event: any, info: any) => {
     const threshold = cardWidth / 4;
     const dragOffset = info.offset.x;
-    
+
     if (dragOffset < -threshold) {
       handleIndexChange(currentIndex + 1);
     } else if (dragOffset > threshold) {
@@ -99,16 +99,16 @@ const Testimonials = () => {
               From moving up 2 grades to smashing the IAs, hear how our specialized tutors changed everything.
             </p>
           </div>
-          
+
           <div className="flex gap-3">
-            <button 
+            <button
               onClick={() => scroll("left")}
               className="group w-12 h-12 rounded-full border border-[var(--border)] bg-white flex items-center justify-center text-[var(--foreground)] hover:bg-[var(--primary)] hover:border-[var(--primary)] transition-all duration-300 shadow-sm grow-0 shrink-0"
               aria-label="Previous testimonial"
             >
               <ChevronLeft size={20} className="group-hover:-translate-x-0.5 transition-transform" />
             </button>
-            <button 
+            <button
               onClick={() => scroll("right")}
               className="group w-12 h-12 rounded-full border border-[var(--border)] bg-white flex items-center justify-center text-[var(--foreground)] hover:bg-[var(--primary)] hover:border-[var(--primary)] transition-all duration-300 shadow-sm grow-0 shrink-0"
               aria-label="Next testimonial"
@@ -119,7 +119,7 @@ const Testimonials = () => {
         </div>
 
         <div className="relative" ref={containerRef}>
-          <motion.div 
+          <motion.div
             className="flex gap-6 cursor-grab active:cursor-grabbing py-4"
             drag="x"
             dragListener={true}
@@ -130,8 +130,8 @@ const Testimonials = () => {
             onDragEnd={handleDragEnd}
           >
             {extendedTestimonials.map((testimonial, idx) => (
-              <div 
-                key={`${testimonial.id}-${idx}`} 
+              <div
+                key={`${testimonial.id}-${idx}`}
                 className="min-w-full md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] h-full"
               >
                 <div className="bg-white rounded-2xl p-8 border border-[var(--border)] hover:shadow-xl hover:border-[var(--primary)] transition-all duration-500 h-full flex flex-col items-start group select-none">
@@ -141,16 +141,16 @@ const Testimonials = () => {
                       <Star key={i} size={14} className="fill-[var(--primary)] text-[var(--primary)]" />
                     ))}
                   </div>
-                  
+
                   <p className="text-[16px] font-body text-[var(--foreground)] leading-relaxed mb-8 flex-grow font-normal italic">
                     "{testimonial.quote}"
                   </p>
 
                   <div className="w-full border-t border-[var(--border)] pt-6 flex items-center gap-4">
                     <div className="relative w-11 h-11 min-w-[44px] rounded-xl overflow-hidden border-2 border-[var(--surface-2)] group-hover:border-[var(--primary-light)] transition-colors duration-300 shadow-sm">
-                      <img 
-                        src={testimonial.avatar} 
-                        alt={testimonial.studentName} 
+                      <img
+                        src={testimonial.avatar}
+                        alt={testimonial.studentName}
                         className="w-full h-full object-cover"
                       />
                     </div>

@@ -31,20 +31,20 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           {/* Brand Column */}
           <div className="flex flex-col items-start lg:col-span-1">
-            <Link 
-              href="/" 
+            <Link
+              href="/"
               className="relative flex items-center h-14 w-56 transition-opacity hover:opacity-80"
             >
-              <Image 
-                src="/ibtutoringlogo.png" 
-                alt="IBMadeEasy Logo" 
+              <Image
+                src="/ibtutoringlogo.png"
+                alt="IBMadeEasy Logo"
                 width={224}
                 height={56}
                 className="h-25 w-auto object-contain brightness-0 invert"
               />
             </Link>
             <p className="text-[#6b7280] font-body text-sm leading-relaxed max-w-xs mt-4">
-              Making IB excellence achievable for every student. 
+              Making IB excellence achievable for every student.
               Personalized tutoring that simplifies complex concepts.
             </p>
           </div>
@@ -58,8 +58,8 @@ const Footer = () => {
               <ul className="flex flex-col gap-4">
                 {group.links.map((link) => (
                   <li key={link.name}>
-                    <Link 
-                      href={link.href} 
+                    <Link
+                      href={link.href}
                       className="text-sm font-body text-[#9ca3af] hover:text-[var(--primary)] transition-colors duration-300"
                     >
                       {link.name}
@@ -94,7 +94,7 @@ const Footer = () => {
           <div className="text-xs font-body text-[#4b5563]">
             &copy; {currentYear} IBMadeEasy Learning Inc. All rights reserved.
           </div>
-          
+
           <div className="flex items-center gap-6">
             {[
               { icon: <Twitter size={16} />, href: "#" },
@@ -102,8 +102,8 @@ const Footer = () => {
               { icon: <Instagram size={16} />, href: "#" },
               { icon: <Facebook size={16} />, href: "#" }
             ].map((social, i) => (
-              <Link 
-                key={i} 
+              <Link
+                key={i}
                 href={social.href}
                 className="text-[#4b5563] hover:text-[var(--primary)] transition-colors duration-300"
               >

@@ -23,7 +23,7 @@ const CustomSelect = ({ value, onChange, options, placeholder }: any) => {
 
   return (
     <div className="relative w-full" ref={containerRef}>
-      <div 
+      <div
         onClick={() => setIsOpen(!isOpen)}
         className={`w-full bg-[var(--background)] border border-[var(--border)] rounded-xl px-4 py-3 text-sm flex items-center justify-between cursor-pointer transition-all duration-200 ${isOpen ? "border-[var(--primary)] ring-2 ring-[var(--primary)]/20 shadow-sm" : "hover:border-[var(--muted)]/50"}`}
       >
@@ -35,7 +35,7 @@ const CustomSelect = ({ value, onChange, options, placeholder }: any) => {
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 8 }}
@@ -43,7 +43,7 @@ const CustomSelect = ({ value, onChange, options, placeholder }: any) => {
             className="absolute z-50 left-0 right-0 mt-2 bg-white border border-[var(--border)] rounded-xl shadow-xl overflow-hidden max-h-[280px] overflow-y-auto scrollbar-hide py-1.5"
           >
             {options.map((option: any) => (
-              <div 
+              <div
                 key={option.id}
                 onClick={() => {
                   onChange(option.label);
@@ -66,10 +66,10 @@ const CustomSelect = ({ value, onChange, options, placeholder }: any) => {
 const CustomDatePicker = ({ value, onChange, placeholder }: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   // Basic Calendar Logic
   const [currentMonth, setCurrentMonth] = useState(new Date());
-  
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
@@ -103,7 +103,7 @@ const CustomDatePicker = ({ value, onChange, placeholder }: any) => {
 
   return (
     <div className="relative w-full" ref={containerRef}>
-      <div 
+      <div
         onClick={() => setIsOpen(!isOpen)}
         className={`w-full bg-[var(--background)] border border-[var(--border)] rounded-xl px-4 py-3 text-sm flex items-center justify-between cursor-pointer transition-all duration-200 ${isOpen ? "border-[var(--primary)] ring-2 ring-[var(--primary)]/20 shadow-sm" : "hover:border-[var(--muted)]/50"}`}
       >
@@ -115,7 +115,7 @@ const CustomDatePicker = ({ value, onChange, placeholder }: any) => {
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 8 }}
@@ -176,7 +176,7 @@ const CTABanner = () => {
     <section id="contact-form" className="relative z-10 mx-6 my-12">
       <div className="max-w-6xl mx-auto bg-[var(--primary)] rounded-3xl p-12 md:p-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          
+
           {/* Left Half */}
           <div className="flex flex-col items-start">
             <span className="text-[10px] uppercase tracking-[0.2em] text-[#3d6b00] font-semibold mb-3">
@@ -188,7 +188,7 @@ const CTABanner = () => {
             <p className="text-base font-body text-[var(--dark)] opacity-70 mb-8 max-w-sm leading-relaxed">
               Join hundreds of other happy students and start your journey towards academic excellence today.
             </p>
-            
+
             <div className="flex flex-col gap-4">
               {[
                 "Free first session",
@@ -216,20 +216,20 @@ const CTABanner = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="text-xs font-heading font-semibold text-[var(--muted)] uppercase tracking-wide mb-1.5 block">Student Name</label>
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         required
-                        placeholder="John Doe"
+                        placeholder="Enter your name"
                         value={formData.name}
-                        onChange={(e) => setFormData({...formData, name: e.target.value})}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         className="w-full bg-[var(--background)] border border-[var(--border)] rounded-xl px-4 py-3 text-sm text-[var(--foreground)] placeholder:text-[var(--muted)] outline-none focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/20 transition-all duration-150"
                       />
                     </div>
                     <div>
                       <label className="text-xs font-heading font-semibold text-[var(--muted)] uppercase tracking-wide mb-1.5 block">Subject Required</label>
-                      <CustomSelect 
+                      <CustomSelect
                         value={formData.subject}
-                        onChange={(val: string) => setFormData({...formData, subject: val})}
+                        onChange={(val: string) => setFormData({ ...formData, subject: val })}
                         options={subjects}
                         placeholder="Select a subject"
                       />
@@ -238,27 +238,27 @@ const CTABanner = () => {
 
                   <div>
                     <label className="text-xs font-heading font-semibold text-[var(--muted)] uppercase tracking-wide mb-1.5 block">Email ID</label>
-                    <input 
-                      type="email" 
+                    <input
+                      type="email"
                       required
                       placeholder="name@example.com"
                       value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full bg-[var(--background)] border border-[var(--border)] rounded-xl px-4 py-3 text-sm text-[var(--foreground)] placeholder:text-[var(--muted)] outline-none focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/20 transition-all duration-150"
                     />
                   </div>
 
                   <div>
                     <label className="text-xs font-heading font-semibold text-[var(--muted)] uppercase tracking-wide mb-1.5 block">Tentative Date</label>
-                    <CustomDatePicker 
+                    <CustomDatePicker
                       value={formData.date}
-                      onChange={(val: string) => setFormData({...formData, date: val})}
+                      onChange={(val: string) => setFormData({ ...formData, date: val })}
                       placeholder="dd-mm-yyyy"
                     />
                   </div>
 
-                  <button 
-                    type="submit" 
+                  <button
+                    type="submit"
                     className="bg-[var(--dark)] text-white font-semibold text-sm rounded-xl w-full py-4 mt-2 hover:bg-[#1f2937] active:scale-[0.99] transition-all"
                   >
                     Submit Request
@@ -274,7 +274,7 @@ const CTABanner = () => {
                 <p className="text-sm font-body text-[var(--muted)] leading-relaxed mb-8">
                   Thank you, {formData.name}. Our academic counselor will reach out to you shortly at {formData.email}.
                 </p>
-                <button 
+                <button
                   onClick={() => setIsSubmitted(false)}
                   className="text-[var(--dark)] font-body font-bold hover:underline"
                 >
