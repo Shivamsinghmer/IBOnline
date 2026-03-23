@@ -1,55 +1,178 @@
-import React from "react";
+"use client";
+
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { testimonials } from "@/lib/data";
-import { Star } from "lucide-react";
+import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, useMotionValue, animate } from "framer-motion";
 
 const Testimonials = () => {
+  // Triple the data for infinite effect
+  const extendedTestimonials = [...testimonials, ...testimonials, ...testimonials];
+  const [currentIndex, setCurrentIndex] = useState(testimonials.length);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+
+  // Card width calculation (including gap)
+  const [cardWidth, setCardWidth] = useState(0);
+
+  useEffect(() => {
+    const updateWidth = () => {
+      if (containerRef.current) {
+        const width = containerRef.current.offsetWidth;
+        const gap = 24; // gap-6
+        if (window.innerWidth >= 1024) {
+          setCardWidth((width + gap) / 3);
+        } else if (window.innerWidth >= 768) {
+          setCardWidth((width + gap) / 2);
+        } else {
+          setCardWidth(width + gap);
+        }
+      }
+    };
+
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+
+  const handleIndexChange = useCallback((newIndex: number) => {
+    setCurrentIndex(newIndex);
+    animate(x, -newIndex * cardWidth, {
+      type: "spring",
+      stiffness: 300,
+      damping: 30,
+    });
+  }, [cardWidth, x]);
+
+  // Handle infinite wrap-around
+  useEffect(() => {
+    if (currentIndex >= testimonials.length * 2) {
+      setTimeout(() => {
+        x.set(-testimonials.length * cardWidth);
+        setCurrentIndex(testimonials.length);
+      }, 350);
+    } else if (currentIndex < testimonials.length) {
+      setTimeout(() => {
+        x.set(-testimonials.length * cardWidth);
+        setCurrentIndex(testimonials.length);
+      }, 350);
+    }
+  }, [currentIndex, cardWidth, x]);
+
+  // Initial position
+  useEffect(() => {
+    if (cardWidth > 0) {
+      x.set(-currentIndex * cardWidth);
+    }
+  }, [cardWidth, x, currentIndex]);
+
+  const scroll = (direction: "left" | "right") => {
+    if (direction === "left") {
+      handleIndexChange(currentIndex - 1);
+    } else {
+      handleIndexChange(currentIndex + 1);
+    }
+  };
+
+  const handleDragEnd = (event: any, info: any) => {
+    const threshold = cardWidth / 4;
+    const dragOffset = info.offset.x;
+    
+    if (dragOffset < -threshold) {
+      handleIndexChange(currentIndex + 1);
+    } else if (dragOffset > threshold) {
+      handleIndexChange(currentIndex - 1);
+    } else {
+      handleIndexChange(currentIndex);
+    }
+  };
+
   return (
     <section id="testimonials" className="py-24 bg-[var(--surface-2)] overflow-hidden">
       <div className="container max-w-6xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-[var(--foreground)] mb-6">Success Stories</h2>
-          <p className="text-base font-body text-[var(--muted)] max-w-2xl mx-auto leading-relaxed">
-            Testimonials from real students who unlocked their potential with our tutors 
-            and achieved substantial improvement in their grades and confidence.
-          </p>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div className="max-w-2xl">
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-[var(--foreground)] mb-6 tracking-tight leading-tight">
+              Success Stories
+            </h2>
+            <p className="text-base font-body text-[var(--muted)] leading-relaxed max-w-xl">
+              From moving up 2 grades to smashing the IAs, hear how our specialized tutors changed everything.
+            </p>
+          </div>
+          
+          <div className="flex gap-3">
+            <button 
+              onClick={() => scroll("left")}
+              className="group w-12 h-12 rounded-full border border-[var(--border)] bg-white flex items-center justify-center text-[var(--foreground)] hover:bg-[var(--primary)] hover:border-[var(--primary)] transition-all duration-300 shadow-sm grow-0 shrink-0"
+              aria-label="Previous testimonial"
+            >
+              <ChevronLeft size={20} className="group-hover:-translate-x-0.5 transition-transform" />
+            </button>
+            <button 
+              onClick={() => scroll("right")}
+              className="group w-12 h-12 rounded-full border border-[var(--border)] bg-white flex items-center justify-center text-[var(--foreground)] hover:bg-[var(--primary)] hover:border-[var(--primary)] transition-all duration-300 shadow-sm grow-0 shrink-0"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight size={20} className="group-hover:translate-x-0.5 transition-transform" />
+            </button>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.slice(0, 3).map((testimonial) => (
-            <div 
-              key={testimonial.id} 
-              className="bg-white rounded-2xl p-7 border border-[var(--border)] hover:-translate-y-1 hover:shadow-lg hover:border-[var(--primary)] transition-all duration-300 flex flex-col items-start h-full"
-            >
-              {/* Star Rating */}
-              <div className="flex items-center gap-1 mb-6">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={14} className="fill-[var(--primary)] text-[var(--primary)]" />
-                ))}
-              </div>
-              
-              <p className="text-[15px] font-body text-[var(--foreground)] leading-relaxed mb-10 flex-grow font-normal">
-                {testimonial.quote}
-              </p>
+        <div className="relative" ref={containerRef}>
+          <motion.div 
+            className="flex gap-6 cursor-grab active:cursor-grabbing py-4"
+            drag="x"
+            dragListener={true}
+            dragMomentum={false}
+            dragElastic={0.1}
+            dragConstraints={{ left: -10000, right: 10000 }}
+            style={{ x }}
+            onDragEnd={handleDragEnd}
+          >
+            {extendedTestimonials.map((testimonial, idx) => (
+              <div 
+                key={`${testimonial.id}-${idx}`} 
+                className="min-w-full md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] h-full"
+              >
+                <div className="bg-white rounded-2xl p-8 border border-[var(--border)] hover:shadow-xl hover:border-[var(--primary)] transition-all duration-500 h-full flex flex-col items-start group select-none">
+                  {/* Star Rating */}
+                  <div className="flex items-center gap-1 mb-6">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} size={14} className="fill-[var(--primary)] text-[var(--primary)]" />
+                    ))}
+                  </div>
+                  
+                  <p className="text-[16px] font-body text-[var(--foreground)] leading-relaxed mb-8 flex-grow font-normal italic">
+                    "{testimonial.quote}"
+                  </p>
 
-              <div className="w-full border-t border-[var(--border)] pt-5 flex items-center gap-3">
-                <div className="relative w-9 h-9 min-w-[36px] rounded-full overflow-hidden border border-[var(--border)] shadow-sm">
-                  <img 
-                    src={testimonial.avatar} 
-                    alt={testimonial.studentName} 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-sm font-body font-semibold text-[var(--foreground)] leading-tight">
-                    {testimonial.studentName}
-                  </span>
-                  <span className="text-xs font-body text-[var(--muted)]">
-                    {testimonial.grade}
-                  </span>
+                  <div className="w-full border-t border-[var(--border)] pt-6 flex items-center gap-4">
+                    <div className="relative w-11 h-11 min-w-[44px] rounded-xl overflow-hidden border-2 border-[var(--surface-2)] group-hover:border-[var(--primary-light)] transition-colors duration-300 shadow-sm">
+                      <img 
+                        src={testimonial.avatar} 
+                        alt={testimonial.studentName} 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-sm font-body font-bold text-[var(--foreground)] leading-tight">
+                        {testimonial.studentName}
+                      </span>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-xs font-body text-[var(--muted)]">
+                          {testimonial.grade}
+                        </span>
+                        <span className="w-1 h-1 rounded-full bg-[var(--border)]" />
+                        <span className="text-xs font-body font-medium text-[var(--primary-dark)]">
+                          {testimonial.region}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>

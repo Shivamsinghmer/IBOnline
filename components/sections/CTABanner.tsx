@@ -1,8 +1,161 @@
 "use client";
 
-import React, { useState } from "react";
-import { Check, CheckCircle2 } from "lucide-react";
+import React, { useState, useRef, useEffect } from "react";
+import { Check, CheckCircle2, ChevronDown, Calendar as CalendarIcon, X } from "lucide-react";
 import { subjects } from "@/lib/data";
+import { motion, AnimatePresence } from "framer-motion";
+
+const CustomSelect = ({ value, onChange, options, placeholder }: any) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const selectedOption = options.find((opt: any) => opt.label === value);
+
+  return (
+    <div className="relative w-full" ref={containerRef}>
+      <div 
+        onClick={() => setIsOpen(!isOpen)}
+        className={`w-full bg-[var(--background)] border border-[var(--border)] rounded-xl px-4 py-3 text-sm flex items-center justify-between cursor-pointer transition-all duration-200 ${isOpen ? "border-[var(--primary)] ring-2 ring-[var(--primary)]/20 shadow-sm" : "hover:border-[var(--muted)]/50"}`}
+      >
+        <span className={value ? "text-[var(--foreground)]" : "text-[var(--muted)]"}>
+          {selectedOption ? `${selectedOption.icon} ${selectedOption.label}` : placeholder}
+        </span>
+        <ChevronDown size={16} className={`text-[var(--muted)] transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
+      </div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
+            transition={{ duration: 0.2 }}
+            className="absolute z-50 left-0 right-0 mt-2 bg-white border border-[var(--border)] rounded-xl shadow-xl overflow-hidden max-h-[280px] overflow-y-auto scrollbar-hide py-1.5"
+          >
+            {options.map((option: any) => (
+              <div 
+                key={option.id}
+                onClick={() => {
+                  onChange(option.label);
+                  setIsOpen(false);
+                }}
+                className={`flex items-center gap-3 px-4 py-2.5 text-sm cursor-pointer transition-colors ${value === option.label ? "bg-[var(--primary)] text-[var(--dark)] font-medium" : "text-[var(--foreground)] hover:bg-[var(--surface-2)]"}`}
+              >
+                <span className="text-base leading-none">{option.icon}</span>
+                <span>{option.label}</span>
+                {value === option.label && <Check size={14} className="ml-auto opacity-70" />}
+              </div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+const CustomDatePicker = ({ value, onChange, placeholder }: any) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Basic Calendar Logic
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+  
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const formatDate = (date: Date) => {
+    return date.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-');
+  };
+
+  const getDaysInMonth = (year: number, month: number) => new Date(year, month + 1, 0).getDate();
+  const getFirstDayOfMonth = (year: number, month: number) => new Date(year, month, 1).getDay();
+
+  const handleDateSelect = (day: number) => {
+    const selectedDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
+    onChange(formatDate(selectedDate));
+    setIsOpen(false);
+  };
+
+  const changeMonth = (offset: number) => {
+    setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + offset, 1));
+  };
+
+  const daysInMonth = getDaysInMonth(currentMonth.getFullYear(), currentMonth.getMonth());
+  const firstDay = getFirstDayOfMonth(currentMonth.getFullYear(), currentMonth.getMonth());
+  const monthName = currentMonth.toLocaleString('default', { month: 'long' });
+
+  return (
+    <div className="relative w-full" ref={containerRef}>
+      <div 
+        onClick={() => setIsOpen(!isOpen)}
+        className={`w-full bg-[var(--background)] border border-[var(--border)] rounded-xl px-4 py-3 text-sm flex items-center justify-between cursor-pointer transition-all duration-200 ${isOpen ? "border-[var(--primary)] ring-2 ring-[var(--primary)]/20 shadow-sm" : "hover:border-[var(--muted)]/50"}`}
+      >
+        <span className={value ? "text-[var(--foreground)]" : "text-[var(--muted)]"}>
+          {value || placeholder}
+        </span>
+        <CalendarIcon size={16} className="text-[var(--muted)]" />
+      </div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
+            transition={{ duration: 0.2 }}
+            className="absolute z-50 left-0 right-0 md:left-auto md:w-[280px] bottom-full mb-2 bg-white border border-[var(--border)] rounded-xl shadow-xl p-4"
+          >
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-sm font-semibold text-[var(--foreground)]">{monthName} {currentMonth.getFullYear()}</span>
+              <div className="flex gap-1">
+                <button type="button" onClick={() => changeMonth(-1)} className="p-1 hover:bg-[var(--surface-2)] rounded-md transition-colors"><ChevronDown size={14} className="rotate-90" /></button>
+                <button type="button" onClick={() => changeMonth(1)} className="p-1 hover:bg-[var(--surface-2)] rounded-md transition-colors"><ChevronDown size={14} className="-rotate-90" /></button>
+              </div>
+            </div>
+            <div className="grid grid-cols-7 gap-1 text-center mb-1">
+              {['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map(day => (
+                <span key={day} className="text-[10px] font-bold text-[var(--muted)] uppercase">{day}</span>
+              ))}
+            </div>
+            <div className="grid grid-cols-7 gap-1 text-center">
+              {[...Array(firstDay)].map((_, i) => <div key={`empty-${i}`} />)}
+              {[...Array(daysInMonth)].map((_, i) => {
+                const day = i + 1;
+                return (
+                  <button
+                    key={day}
+                    type="button"
+                    onClick={() => handleDateSelect(day)}
+                    className="w-full aspect-square text-xs rounded-lg hover:bg-[var(--primary-light)] hover:text-[#3d6b00] flex items-center justify-center transition-colors"
+                  >
+                    {day}
+                  </button>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
 
 const CTABanner = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -15,12 +168,13 @@ const CTABanner = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.subject || !formData.date) return;
     setIsSubmitted(true);
   };
 
   return (
     <section id="contact-form" className="relative z-10 mx-6 my-12">
-      <div className="max-w-6xl mx-auto bg-[var(--primary)] rounded-3xl overflow-hidden p-12 md:p-16">
+      <div className="max-w-6xl mx-auto bg-[var(--primary)] rounded-3xl p-12 md:p-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           
           {/* Left Half */}
@@ -73,17 +227,12 @@ const CTABanner = () => {
                     </div>
                     <div>
                       <label className="text-xs font-heading font-semibold text-[var(--muted)] uppercase tracking-wide mb-1.5 block">Subject Required</label>
-                      <select 
-                        required
+                      <CustomSelect 
                         value={formData.subject}
-                        onChange={(e) => setFormData({...formData, subject: e.target.value})}
-                        className="w-full bg-[var(--background)] border border-[var(--border)] rounded-xl px-4 py-3 text-sm text-[var(--foreground)] outline-none focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/20 transition-all duration-150 appearance-none cursor-pointer"
-                      >
-                        <option value="" disabled>Select a subject</option>
-                        {subjects.map((sub) => (
-                          <option key={sub.id} value={sub.label}>{sub.label}</option>
-                        ))}
-                      </select>
+                        onChange={(val: string) => setFormData({...formData, subject: val})}
+                        options={subjects}
+                        placeholder="Select a subject"
+                      />
                     </div>
                   </div>
 
@@ -101,12 +250,10 @@ const CTABanner = () => {
 
                   <div>
                     <label className="text-xs font-heading font-semibold text-[var(--muted)] uppercase tracking-wide mb-1.5 block">Tentative Date</label>
-                    <input 
-                      type="date" 
-                      required
+                    <CustomDatePicker 
                       value={formData.date}
-                      onChange={(e) => setFormData({...formData, date: e.target.value})}
-                      className="w-full bg-[var(--background)] border border-[var(--border)] rounded-xl px-4 py-3 text-sm text-[var(--foreground)] outline-none focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/20 transition-all duration-150"
+                      onChange={(val: string) => setFormData({...formData, date: val})}
+                      placeholder="dd-mm-yyyy"
                     />
                   </div>
 

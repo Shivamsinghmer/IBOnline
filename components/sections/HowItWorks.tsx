@@ -5,14 +5,14 @@ const steps = [
   {
     number: "1",
     title: "Fill the engagement form",
-    description: "Tell us about yourself, your grade level, and the subjects you're struggling with.",
+    description: "Tell us about yourself, your grade level, and the subjects you are struggling with.",
     icon: <PenLine size={24} />,
     image: "https://images.unsplash.com/photo-1555421689-d68471e189f2?auto=format&fit=crop&q=80&w=800",
   },
   {
     number: "2",
     title: "Connect with a counselor",
-    description: "Chat with a friendly counselor who'll listen to your goals and find the right tutor.",
+    description: "Chat with a friendly counselor who will listen to your goals and find the right tutor.",
     icon: <PhoneCall size={24} />,
     image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800",
   },

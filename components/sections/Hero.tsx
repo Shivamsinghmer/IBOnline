@@ -57,7 +57,7 @@ const Hero = () => {
         >
           <Link href="#contact-form" className="w-full sm:w-auto">
             <button className="w-full sm:w-auto bg-[var(--primary)] text-[var(--dark)] rounded-full px-10 py-4 font-semibold text-base hover:bg-[var(--primary-dark)] hover:text-white transition-all duration-200 shadow-[0_4px_20px_rgba(168,232,50,0.4)] flex items-center justify-center gap-2">
-              Get Started Now <span>→</span>
+              Get Started<span>→</span>
             </button>
           </Link>
           <Link href="#how-it-works" className="w-full sm:w-auto">
