@@ -23,7 +23,7 @@ const SubjectsStrip = () => {
             {marqueeItems.map((subject, index) => (
               <div 
                 key={`${subject.id}-${index}`} 
-                className="group flex-shrink-0 bg-white border border-[var(--border)] rounded-full px-4 py-1.5 text-sm font-body font-medium text-[var(--foreground)] hover:bg-[var(--primary-light)] hover:border-[var(--primary)] hover:text-[#3d6b00] transition-all duration-150 cursor-pointer shadow-sm flex items-center gap-2"
+                className="group flex-shrink-0 bg-white border border-[var(--border)] rounded-full px-4 py-1.5 text-sm font-body font-medium text-[var(--foreground)] hover:bg-[var(--primary-light)] hover:border-[var(--primary)] hover:text-[var(--primary-dark)] transition-all duration-150 cursor-pointer shadow-sm flex items-center gap-2"
               >
                 <span className="text-base leading-none">{subject.icon}</span>
                 <span>{subject.label}</span>

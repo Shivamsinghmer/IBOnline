@@ -9,7 +9,7 @@ export function Badge({ className, variant = "primary", ...props }: BadgeProps) 
   const baseStyles = "inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--primary)]";
   
   const variants = {
-    primary: "bg-accent text-black border-transparent",
+    primary: "bg-accent text-white border-transparent",
     secondary: "bg-[var(--secondary)] text-[var(--secondary-foreground)] border-transparent",
     outline: "border border-[var(--border)] text-[var(--foreground)]",
     accent: "bg-[var(--accent)] text-[var(--accent-foreground)] border-transparent",

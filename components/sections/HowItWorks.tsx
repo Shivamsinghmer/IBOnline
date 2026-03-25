@@ -51,7 +51,7 @@ const HowItWorks = () => {
           {steps.map((step) => (
             <div 
               key={step.number} 
-              className="bg-[var(--background)] rounded-2xl p-8 border border-[var(--border)] hover:border-[var(--primary)] hover:shadow-[0_8px_30px_rgba(168,232,50,0.15)] transition-all duration-300 relative overflow-hidden group"
+              className="bg-[var(--background)] rounded-2xl p-8 border border-[var(--border)] hover:border-[var(--primary)] hover:shadow-[0_8px_30px_rgba(0,69,135,0.15)] transition-all duration-300 relative overflow-hidden group"
             >
               {/* Step number Watermark */}
               <span className="absolute -top-10 -right-6 font-heading text-[12rem] font-bold text-[var(--primary)] opacity-[0.08] select-none pointer-events-none group-hover:opacity-15 transition-all duration-500">
@@ -59,7 +59,7 @@ const HowItWorks = () => {
               </span>
 
               {/* Icon chip */}
-              <div className="w-14 h-14 rounded-2xl bg-[var(--primary)] flex items-center justify-center text-[var(--foreground)] mb-8 shadow-[0_8px_30px_rgba(168,232,50,0.3)] group-hover:scale-110 transition-all duration-300">
+              <div className="w-14 h-14 rounded-2xl bg-[var(--primary-light)] flex items-center justify-center text-[var(--primary)] mb-8 shadow-[0_8px_30px_rgba(147,197,253,0.3)] group-hover:scale-110 transition-all duration-300">
                 {step.icon}
               </div>
 

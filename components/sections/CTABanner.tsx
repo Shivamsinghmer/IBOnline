@@ -62,7 +62,7 @@ const CustomSelect = ({ value, onChange, options, placeholder }: any) => {
                   onChange(option.label);
                   setIsOpen(false);
                 }}
-                className={`flex items-center gap-3 px-4 py-2.5 text-sm cursor-pointer transition-colors ${value === option.label ? "bg-[var(--primary)] text-[var(--dark)] font-medium" : "text-[var(--foreground)] hover:bg-[var(--surface-2)]"}`}
+                className={`flex items-center gap-3 px-4 py-2.5 text-sm cursor-pointer transition-colors ${value === option.label ? "bg-[var(--primary)] text-white font-medium" : "text-[var(--foreground)] hover:bg-[var(--surface-2)]"}`}
               >
                 <span>{option.label}</span>
                 {value === option.label && <Check size={14} className="ml-auto opacity-70" />}
@@ -155,7 +155,7 @@ const CustomDatePicker = ({ value, onChange, placeholder }: any) => {
                     key={day}
                     type="button"
                     onClick={() => handleDateSelect(day)}
-                    className="w-full aspect-square text-xs rounded-lg hover:bg-[var(--primary-light)] hover:text-[#3d6b00] flex items-center justify-center transition-colors"
+                    className="w-full aspect-square text-xs rounded-lg hover:bg-[var(--primary-light)] hover:text-[#002a5c] flex items-center justify-center transition-colors"
                   >
                     {day}
                   </button>
@@ -198,12 +198,12 @@ const CTABanner = () => {
 
   return (
     <section id="contact-form" className="relative z-10 mx-6 my-12">
-      <div className="max-w-6xl mx-auto bg-[var(--primary)] rounded-3xl p-12 md:p-16">
+      <div className="max-w-6xl mx-auto bg-[var(--primary-light)] rounded-3xl p-12 md:p-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
           {/* Left Half */}
           <div className="flex flex-col items-start">
-            <span className="text-[10px] uppercase tracking-[0.2em] text-[#3d6b00] font-semibold mb-3">
+            <span className="text-[10px] uppercase tracking-[0.2em] text-[var(--primary-dark)] font-semibold mb-3">
               Start Today
             </span>
             <h2 className="text-[44px] font-heading font-bold text-[var(--dark)] leading-tight mb-4">
@@ -305,7 +305,7 @@ const CTABanner = () => {
               </>
             ) : (
               <div className="text-center py-8">
-                <div className="w-16 h-16 bg-[var(--primary-light)] text-[#3d6b00] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 bg-white text-[var(--primary)] rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
                   <CheckCircle2 size={32} />
                 </div>
                 <h3 className="text-2xl font-heading font-semibold text-[var(--foreground)] mb-3">Request Received!</h3>

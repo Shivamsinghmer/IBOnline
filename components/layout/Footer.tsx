@@ -36,7 +36,7 @@ const Footer = () => {
               className="relative flex items-center h-14 w-56 transition-opacity hover:opacity-80"
             >
               <Image
-                src="/ibtutoringlogo.png"
+                src="/logo.png"
                 alt="IBMadeEasy Logo"
                 width={224}
                 height={56}

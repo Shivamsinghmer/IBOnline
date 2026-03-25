@@ -8,14 +8,14 @@ const Hero = () => {
       <div
         className="absolute inset-x-0 top-0 h-full pointer-events-none opacity-40"
         style={{
-          background: "radial-gradient(ellipse 80% 50% at 50% -10%, rgba(168,232,50,0.12) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0,69,135,0.12) 0%, transparent 70%)",
         }}
       />
 
       <div className="container max-w-5xl mx-auto px-6 relative z-10 flex flex-col items-center text-center">
         {/* Eyebrow Badge */}
         <div
-          className="inline-flex items-center gap-2 bg-[var(--primary-light)] text-[#3d6b00] text-xs font-semibold px-4 py-1.5 rounded-full mb-8 animate-fade-up"
+          className="inline-flex items-center gap-2 bg-[var(--primary-light)] text-[var(--primary-dark)] text-xs font-semibold px-4 py-1.5 rounded-full mb-8 animate-fade-up"
           style={{ animationDelay: "0ms" }}
         >
           <span>✦ Trusted by Students Worldwide 🌎</span>
@@ -56,12 +56,12 @@ const Hero = () => {
           style={{ animationDelay: "300ms" }}
         >
           <Link href="#contact-form" className="w-full sm:w-auto">
-            <button className="w-full sm:w-auto bg-[var(--primary)] text-[var(--dark)] rounded-full px-10 py-4 font-semibold text-base hover:bg-[var(--primary-dark)] transition-all duration-200 shadow-[0_4px_20px_rgba(168,232,50,0.4)] flex items-center justify-center gap-2">
+            <button className="w-full sm:w-auto bg-[var(--primary)] text-white rounded-full px-10 py-4 font-semibold text-base hover:bg-[var(--primary-dark)] transition-all duration-200 shadow-[0_4px_20px_rgba(0,69,135,0.4)] flex items-center justify-center gap-2">
               Get Started
             </button>
           </Link>
           <Link href="#how-it-works" className="w-full sm:w-auto">
-            <button className="w-full sm:w-auto bg-[var(--primary)] text-[var(--dark)] rounded-full px-10 py-4 font-semibold text-base hover:bg-[var(--primary-dark)] transition-all duration-200 shadow-[0_4px_20px_rgba(168,232,50,0.4)] flex items-center justify-center gap-2">
+            <button className="w-full sm:w-auto bg-[var(--primary)] text-white rounded-full px-10 py-4 font-semibold text-base hover:bg-[var(--primary-dark)] transition-all duration-200 shadow-[0_4px_20px_rgba(0,69,135,0.4)] flex items-center justify-center gap-2">
               Learn More
             </button>
           </Link>

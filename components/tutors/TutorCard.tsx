@@ -28,8 +28,8 @@ const TutorCard = ({ tutor }: { tutor: Tutor }) => {
         />
         {tutor.available && (
           <div className="absolute top-4 right-4 z-10">
-            <Badge variant="accent" className="bg-white/90 backdrop-blur-md border border-[var(--border)] text-green-700 shadow-sm flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+            <Badge variant="accent" className="bg-white/90 backdrop-blur-md border border-[var(--border)] text-[var(--primary-dark)] shadow-sm flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--primary)] animate-pulse" />
               Available
             </Badge>
           </div>

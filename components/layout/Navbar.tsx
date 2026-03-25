@@ -40,7 +40,7 @@ const Navbar = () => {
           className="relative flex items-center h-9 w-64 transition-opacity hover:opacity-80"
         >
           <Image
-            src="/ibtutoringlogo.png"
+            src="/logo.png"
             alt="IBMadeEasy Logo"
             width={256}
             height={90}
