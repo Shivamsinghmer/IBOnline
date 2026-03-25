@@ -9,6 +9,7 @@ const Testimonials = () => {
   // Triple the data for infinite effect
   const extendedTestimonials = [...testimonials, ...testimonials, ...testimonials];
   const [currentIndex, setCurrentIndex] = useState(testimonials.length);
+  const [isPaused, setIsPaused] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
 
@@ -38,9 +39,9 @@ const Testimonials = () => {
   const handleIndexChange = useCallback((newIndex: number) => {
     setCurrentIndex(newIndex);
     animate(x, -newIndex * cardWidth, {
-      type: "spring",
-      stiffness: 300,
-      damping: 30,
+      type: "tween",
+      duration: 0.8,
+      ease: "easeInOut",
     });
   }, [cardWidth, x]);
 
@@ -50,21 +51,38 @@ const Testimonials = () => {
       setTimeout(() => {
         x.set(-testimonials.length * cardWidth);
         setCurrentIndex(testimonials.length);
-      }, 350);
+      }, 850);
     } else if (currentIndex < testimonials.length) {
       setTimeout(() => {
         x.set(-testimonials.length * cardWidth);
         setCurrentIndex(testimonials.length);
-      }, 350);
+      }, 850);
     }
   }, [currentIndex, cardWidth, x]);
 
-  // Initial position
+  // Auto-scroll mechanism
+  useEffect(() => {
+    if (isPaused || cardWidth === 0) return;
+
+    const interval = setInterval(() => {
+      handleIndexChange(currentIndex + 1);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [currentIndex, handleIndexChange, isPaused, cardWidth]);
+
+  const currentIndexRef = useRef(currentIndex);
+
+  useEffect(() => {
+    currentIndexRef.current = currentIndex;
+  }, [currentIndex]);
+
+  // Initial position / window resize snap
   useEffect(() => {
     if (cardWidth > 0) {
-      x.set(-currentIndex * cardWidth);
+      x.set(-currentIndexRef.current * cardWidth);
     }
-  }, [cardWidth, x, currentIndex]);
+  }, [cardWidth, x]);
 
   const scroll = (direction: "left" | "right") => {
     if (direction === "left") {
@@ -85,6 +103,7 @@ const Testimonials = () => {
     } else {
       handleIndexChange(currentIndex);
     }
+    setIsPaused(false);
   };
 
   return (
@@ -118,7 +137,12 @@ const Testimonials = () => {
           </div>
         </div>
 
-        <div className="relative" ref={containerRef}>
+        <div 
+          className="relative" 
+          ref={containerRef}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
           <motion.div
             className="flex gap-6 cursor-grab active:cursor-grabbing py-4"
             drag="x"
@@ -127,6 +151,7 @@ const Testimonials = () => {
             dragElastic={0.1}
             dragConstraints={{ left: -10000, right: 10000 }}
             style={{ x }}
+            onDragStart={() => setIsPaused(true)}
             onDragEnd={handleDragEnd}
           >
             {extendedTestimonials.map((testimonial, idx) => (

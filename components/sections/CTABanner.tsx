@@ -4,6 +4,19 @@ import React, { useState, useRef, useEffect } from "react";
 import { Check, CheckCircle2, ChevronDown, Calendar as CalendarIcon, X } from "lucide-react";
 import { subjects } from "@/lib/data";
 import { motion, AnimatePresence } from "framer-motion";
+import { z } from "zod";
+
+const formSchema = z.object({
+  name: z.string()
+    .min(2, "Name must be at least 2 characters")
+    .refine((val) => {
+      const numbers = val.match(/\d/g);
+      return !numbers || numbers.length <= 1;
+    }, "Name can contain at most 1 number"),
+  subject: z.string().min(1, "Subject is required"),
+  email: z.string().email("Invalid email address"),
+  date: z.string().min(1, "Tentative date is required"),
+});
 
 const CustomSelect = ({ value, onChange, options, placeholder }: any) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +41,7 @@ const CustomSelect = ({ value, onChange, options, placeholder }: any) => {
         className={`w-full bg-[var(--background)] border border-[var(--border)] rounded-xl px-4 py-3 text-sm flex items-center justify-between cursor-pointer transition-all duration-200 ${isOpen ? "border-[var(--primary)] ring-2 ring-[var(--primary)]/20 shadow-sm" : "hover:border-[var(--muted)]/50"}`}
       >
         <span className={value ? "text-[var(--foreground)]" : "text-[var(--muted)]"}>
-          {selectedOption ? `${selectedOption.icon} ${selectedOption.label}` : placeholder}
+          {selectedOption ? selectedOption.label : placeholder}
         </span>
         <ChevronDown size={16} className={`text-[var(--muted)] transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
       </div>
@@ -51,7 +64,6 @@ const CustomSelect = ({ value, onChange, options, placeholder }: any) => {
                 }}
                 className={`flex items-center gap-3 px-4 py-2.5 text-sm cursor-pointer transition-colors ${value === option.label ? "bg-[var(--primary)] text-[var(--dark)] font-medium" : "text-[var(--foreground)] hover:bg-[var(--surface-2)]"}`}
               >
-                <span className="text-base leading-none">{option.icon}</span>
                 <span>{option.label}</span>
                 {value === option.label && <Check size={14} className="ml-auto opacity-70" />}
               </div>
@@ -165,10 +177,22 @@ const CTABanner = () => {
     email: "",
     date: "",
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.subject || !formData.date) return;
+    const result = formSchema.safeParse(formData);
+    
+    if (!result.success) {
+      const newErrors: Record<string, string> = {};
+      result.error.issues.forEach((issue) => {
+        newErrors[String(issue.path[0])] = issue.message;
+      });
+      setErrors(newErrors);
+      return;
+    }
+    
+    setErrors({});
     setIsSubmitted(true);
   };
 
@@ -218,21 +242,28 @@ const CTABanner = () => {
                       <label className="text-xs font-heading font-semibold text-[var(--muted)] uppercase tracking-wide mb-1.5 block">Student Name</label>
                       <input
                         type="text"
-                        required
                         placeholder="Enter your name"
                         value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full bg-[var(--background)] border border-[var(--border)] rounded-xl px-4 py-3 text-sm text-[var(--foreground)] placeholder:text-[var(--muted)] outline-none focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/20 transition-all duration-150"
+                        onChange={(e) => {
+                          setFormData({ ...formData, name: e.target.value });
+                          if (errors.name) setErrors({ ...errors, name: "" });
+                        }}
+                        className={`w-full bg-[var(--background)] border ${errors.name ? 'border-red-500 focus:ring-red-500/20' : 'border-[var(--border)] focus:border-[var(--primary)] focus:ring-[var(--primary)]/20'} rounded-xl px-4 py-3 text-sm text-[var(--foreground)] placeholder:text-[var(--muted)] outline-none focus:ring-2 transition-all duration-150`}
                       />
+                      {errors.name && <span className="text-red-500 text-xs mt-1 block">{errors.name}</span>}
                     </div>
                     <div>
                       <label className="text-xs font-heading font-semibold text-[var(--muted)] uppercase tracking-wide mb-1.5 block">Subject Required</label>
                       <CustomSelect
                         value={formData.subject}
-                        onChange={(val: string) => setFormData({ ...formData, subject: val })}
+                        onChange={(val: string) => {
+                          setFormData({ ...formData, subject: val });
+                          if (errors.subject) setErrors({ ...errors, subject: "" });
+                        }}
                         options={subjects}
                         placeholder="Select a subject"
                       />
+                      {errors.subject && <span className="text-red-500 text-xs mt-1 block">{errors.subject}</span>}
                     </div>
                   </div>
 
@@ -240,21 +271,28 @@ const CTABanner = () => {
                     <label className="text-xs font-heading font-semibold text-[var(--muted)] uppercase tracking-wide mb-1.5 block">Email ID</label>
                     <input
                       type="email"
-                      required
                       placeholder="name@example.com"
                       value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-[var(--background)] border border-[var(--border)] rounded-xl px-4 py-3 text-sm text-[var(--foreground)] placeholder:text-[var(--muted)] outline-none focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/20 transition-all duration-150"
+                      onChange={(e) => {
+                        setFormData({ ...formData, email: e.target.value });
+                        if (errors.email) setErrors({ ...errors, email: "" });
+                      }}
+                      className={`w-full bg-[var(--background)] border ${errors.email ? 'border-red-500 focus:ring-red-500/20' : 'border-[var(--border)] focus:border-[var(--primary)] focus:ring-[var(--primary)]/20'} rounded-xl px-4 py-3 text-sm text-[var(--foreground)] placeholder:text-[var(--muted)] outline-none focus:ring-2 transition-all duration-150`}
                     />
+                    {errors.email && <span className="text-red-500 text-xs mt-1 block">{errors.email}</span>}
                   </div>
 
                   <div>
                     <label className="text-xs font-heading font-semibold text-[var(--muted)] uppercase tracking-wide mb-1.5 block">Tentative Date</label>
                     <CustomDatePicker
                       value={formData.date}
-                      onChange={(val: string) => setFormData({ ...formData, date: val })}
+                      onChange={(val: string) => {
+                        setFormData({ ...formData, date: val });
+                        if (errors.date) setErrors({ ...errors, date: "" });
+                      }}
                       placeholder="dd-mm-yyyy"
                     />
+                    {errors.date && <span className="text-red-500 text-xs mt-1 block">{errors.date}</span>}
                   </div>
 
                   <button
