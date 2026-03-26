@@ -26,21 +26,21 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-[var(--dark)] pt-24 pb-12 overflow-hidden">
+    <footer className="bg-[var(--dark)] pt-16 sm:pt-24 pb-12 overflow-hidden">
       <div className="container max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16 mb-16 sm:mb-20">
           {/* Brand Column */}
           <div className="flex flex-col items-start lg:col-span-1">
             <Link
               href="/"
-              className="relative flex items-center h-14 w-56 transition-opacity hover:opacity-80"
+              className="relative flex items-center h-12 sm:h-14 w-48 sm:w-56 transition-opacity hover:opacity-80"
             >
               <Image
                 src="/logo.png"
                 alt="IBMadeEasy Logo"
                 width={224}
                 height={56}
-                className="h-25 w-auto object-contain brightness-0 invert"
+                className="h-20 sm:h-25 w-auto object-contain brightness-0 invert"
               />
             </Link>
             <p className="text-[#6b7280] font-body text-sm leading-relaxed max-w-xs mt-4">

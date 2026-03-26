@@ -23,10 +23,10 @@ const Hero = () => {
 
         {/* Headline */}
         <h1
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-[var(--foreground)] leading-[1.1] mb-6 tracking-tight animate-fade-up"
-          style={{ animationDelay: "100ms", letterSpacing: "-0.02em" }}
+          className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-[var(--foreground)] leading-[1.2] sm:leading-[1.1] mb-6 tracking-tight animate-fade-up px-2"
+          style={{ animationDelay: "100ms", letterSpacing: "-0.01em" }}
         >
-          Excel in Your IB Exams by perfecting your preparation with<br />
+          Excel in Your IB Exams by perfecting your preparation with<br className="hidden sm:block" />
           <span className="relative inline-block mt-2">
             <em className="italic not-italic font-bold font-heading text-[var(--foreground)]">top Tutors</em>
             <svg viewBox="0 0 200 8" className="absolute -bottom-1 left-0 w-full text-[var(--primary)] pointer-events-none" preserveAspectRatio="none">
@@ -43,7 +43,7 @@ const Hero = () => {
 
         {/* Subheadline */}
         <p
-          className="text-base md:text-lg font-body text-[var(--muted)] max-w-xl mb-10 leading-relaxed animate-fade-up px-4"
+          className="text-sm md:text-lg font-body text-[var(--muted)] max-w-xl mb-10 leading-relaxed animate-fade-up px-4"
           style={{ animationDelay: "200ms" }}
         >
           One to one online tutoring sessions catering to your specific needs and learning style.
@@ -52,16 +52,16 @@ const Hero = () => {
 
         {/* CTAs */}
         <div
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 w-full animate-fade-up px-6"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 w-full max-w-sm sm:max-w-none animate-fade-up px-6"
           style={{ animationDelay: "300ms" }}
         >
           <Link href="#contact-form" className="w-full sm:w-auto">
-            <button className="w-full sm:w-auto bg-[var(--primary)] text-white rounded-full px-10 py-4 font-semibold text-base hover:bg-[var(--primary-dark)] transition-all duration-200 shadow-[0_4px_20px_rgba(0,69,135,0.4)] flex items-center justify-center gap-2">
+            <button className="w-full sm:w-auto bg-[var(--primary)] text-white rounded-full px-8 py-3.5 font-semibold text-base hover:bg-[var(--primary-dark)] transition-all duration-200 shadow-[0_4px_20px_rgba(0,69,135,0.3)] flex items-center justify-center gap-2">
               Get Started
             </button>
           </Link>
           <Link href="#how-it-works" className="w-full sm:w-auto">
-            <button className="w-full sm:w-auto bg-[var(--primary)] text-white rounded-full px-10 py-4 font-semibold text-base hover:bg-[var(--primary-dark)] transition-all duration-200 shadow-[0_4px_20px_rgba(0,69,135,0.4)] flex items-center justify-center gap-2">
+            <button className="w-full sm:w-auto bg-white text-[var(--primary)] border-2 border-[var(--primary)] rounded-full px-8 py-3.5 font-semibold text-base hover:bg-[var(--primary-light)] transition-all duration-200 flex items-center justify-center gap-2">
               Learn More
             </button>
           </Link>

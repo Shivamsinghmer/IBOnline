@@ -9,8 +9,8 @@ const SubjectsStrip = () => {
 
   return (
     <section id="subjects" className="py-3 bg-[var(--surface-2)] border-y border-[var(--border)] overflow-hidden flex items-center h-16">
-      <div className="container max-w-6xl mx-auto px-6 flex items-center gap-6 relative z-10">
-        <label className="shrink-0 text-[10px] uppercase tracking-[0.15em] text-[var(--muted)] font-semibold whitespace-nowrap bg-[var(--surface-2)] pr-4 z-20">
+      <div className="container max-w-6xl mx-auto px-4 sm:px-6 flex items-center gap-6 relative z-10">
+        <label className="hidden sm:block shrink-0 text-[10px] uppercase tracking-[0.15em] text-[var(--muted)] font-semibold whitespace-nowrap bg-[var(--surface-2)] pr-4 z-20">
           Tutoring Available For
         </label>
         

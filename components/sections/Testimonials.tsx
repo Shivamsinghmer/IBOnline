@@ -107,14 +107,14 @@ const Testimonials = () => {
   };
 
   return (
-    <section id="testimonials" className="py-24 bg-[var(--surface-2)] overflow-hidden">
-      <div className="container max-w-6xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+    <section id="testimonials" className="py-16 sm:py-24 bg-[var(--surface-2)] overflow-hidden">
+      <div className="container max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-6">
           <div className="max-w-2xl">
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-[var(--foreground)] mb-6 tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-[var(--foreground)] mb-4 sm:mb-6 tracking-tight leading-tight px-2">
               Success Stories
             </h2>
-            <p className="text-base font-body text-[var(--muted)] leading-relaxed max-w-xl">
+            <p className="text-sm sm:text-base font-body text-[var(--muted)] leading-relaxed max-w-xl px-2">
               From moving up 2 grades to smashing the IAs, hear how our specialized tutors changed everything.
             </p>
           </div>
@@ -159,7 +159,7 @@ const Testimonials = () => {
                 key={`${testimonial.id}-${idx}`}
                 className="min-w-full md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] h-full"
               >
-                <div className="bg-white rounded-2xl p-8 border border-[var(--border)] hover:shadow-xl hover:border-[var(--primary)] transition-all duration-500 h-full flex flex-col items-start group select-none">
+                <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[var(--border)] hover:shadow-xl hover:border-[var(--primary)] transition-all duration-500 h-full flex flex-col items-start group select-none">
                   {/* Star Rating */}
                   <div className="flex items-center gap-1 mb-6">
                     {[...Array(5)].map((_, i) => (

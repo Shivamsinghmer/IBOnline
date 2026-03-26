@@ -197,19 +197,19 @@ const CTABanner = () => {
   };
 
   return (
-    <section id="contact-form" className="relative z-10 mx-6 my-12">
-      <div className="max-w-6xl mx-auto bg-[var(--primary-light)] rounded-3xl p-12 md:p-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <section id="contact-form" className="relative z-10 mx-4 sm:mx-6 my-12 sm:my-20">
+      <div className="max-w-6xl mx-auto bg-[var(--primary-light)] rounded-3xl p-8 sm:p-12 md:p-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
 
           {/* Left Half */}
-          <div className="flex flex-col items-start">
+          <div className="flex flex-col items-start px-2 sm:px-0">
             <span className="text-[10px] uppercase tracking-[0.2em] text-[var(--primary-dark)] font-semibold mb-3">
               Start Today
             </span>
-            <h2 className="text-[44px] font-heading font-bold text-[var(--dark)] leading-tight mb-4">
+            <h2 className="text-3xl sm:text-[44px] font-heading font-bold text-[var(--dark)] leading-tight mb-4">
               Ready to Ace Your Next Exam?
             </h2>
-            <p className="text-base font-body text-[var(--dark)] opacity-70 mb-8 max-w-sm leading-relaxed">
+            <p className="text-sm sm:text-base font-body text-[var(--dark)] opacity-70 mb-8 max-w-sm leading-relaxed">
               Join hundreds of other happy students and start your journey towards academic excellence today.
             </p>
 
@@ -230,7 +230,7 @@ const CTABanner = () => {
           </div>
 
           {/* Right Half: Form Card */}
-          <div className="bg-white rounded-2xl p-7 shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
+          <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
             {!isSubmitted ? (
               <>
                 <h3 className="text-[22px] font-heading font-semibold text-[var(--foreground)] mb-6">

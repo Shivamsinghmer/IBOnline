@@ -36,12 +36,12 @@ const HowItWorks = () => {
   return (
     <section id="how-it-works" className="py-24 bg-white overflow-hidden">
       <div className="container max-w-6xl mx-auto px-6">
-        <div className="flex flex-col items-center text-center mb-16 px-6">
+        <div className="flex flex-col items-center text-center mb-12 sm:mb-16 px-4">
           <span className="text-[10px] uppercase tracking-[0.2em] text-[var(--primary-dark)] font-semibold mb-3">
             Our Process
           </span>
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-[var(--foreground)] mb-4">How It Works</h2>
-          <p className="text-base font-body text-[var(--muted)] max-w-md mx-auto leading-relaxed">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-[var(--foreground)] mb-4 px-2">How It Works</h2>
+          <p className="text-sm sm:text-base font-body text-[var(--muted)] max-w-md mx-auto leading-relaxed px-4">
             Success is just four simple steps away. Our streamlined process 
             makes finding and working with expert tutors effortless.
           </p>
@@ -51,10 +51,10 @@ const HowItWorks = () => {
           {steps.map((step) => (
             <div 
               key={step.number} 
-              className="bg-[var(--background)] rounded-2xl p-8 border border-[var(--border)] hover:border-[var(--primary)] hover:shadow-[0_8px_30px_rgba(0,69,135,0.15)] transition-all duration-300 relative overflow-hidden group"
+              className="bg-[var(--background)] rounded-2xl p-6 sm:p-8 border border-[var(--border)] hover:border-[var(--primary)] hover:shadow-[0_8px_30px_rgba(0,69,135,0.15)] transition-all duration-300 relative overflow-hidden group"
             >
               {/* Step number Watermark */}
-              <span className="absolute -top-10 -right-6 font-heading text-[12rem] font-bold text-[var(--primary)] opacity-[0.08] select-none pointer-events-none group-hover:opacity-15 transition-all duration-500">
+              <span className="absolute -top-6 sm:-top-10 -right-4 sm:-right-6 font-heading text-[8rem] sm:text-[12rem] font-bold text-[var(--primary)] opacity-[0.08] select-none pointer-events-none group-hover:opacity-15 transition-all duration-500">
                 {step.number}
               </span>
 
