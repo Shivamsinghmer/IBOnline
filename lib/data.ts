@@ -135,3 +135,39 @@ export const tutors = [
     avatar: "https://i.pravatar.cc/150?u=james",
   },
 ];
+
+export const pricingPlans = [
+  {
+    name: "Standard",
+    price: 45,
+    highlight: false,
+    features: [
+      "2 Tutoring Sessions / Month",
+      "Regular Progress Tracking",
+      "Homework Assistance",
+      "Email Support"
+    ],
+  },
+  {
+    name: "Premium",
+    price: 85,
+    highlight: true,
+    features: [
+      "4 Tutoring Sessions / Month",
+      "Individualized Learning Plan",
+      "Priority Scheduling",
+      "24/7 Chat Support"
+    ],
+  },
+  {
+    name: "Intensive",
+    price: 155,
+    highlight: false,
+    features: [
+      "8 Tutoring Sessions / Month",
+      "Comprehensive Exam Prep",
+      "Mock Interviews & Reviews",
+      "Parent Progress Portal"
+    ],
+  },
+];
