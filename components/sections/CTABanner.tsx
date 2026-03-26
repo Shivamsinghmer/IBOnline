@@ -53,7 +53,7 @@ const CustomSelect = ({ value, onChange, options, placeholder }: any) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 8 }}
             transition={{ duration: 0.2 }}
-            className="absolute z-50 left-0 right-0 mt-2 bg-white border border-[var(--border)] rounded-xl shadow-xl overflow-hidden max-h-[280px] overflow-y-auto scrollbar-hide py-1.5"
+            className="absolute z-50 left-0 right-0 mt-2 bg-white border border-[var(--border)] rounded-xl shadow-xl overflow-hidden max-h-[220px] overflow-y-auto custom-scrollbar pr-1 py-1.5"
           >
             {options.map((option: any) => (
               <div

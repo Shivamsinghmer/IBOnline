@@ -76,6 +76,7 @@ const Hero = () => {
             { label: "Expert Tutors", sub: "Verified Credentials" },
             { label: "Guaranteed Success", sub: "Grade Improvement" },
             { label: "IB Resources", sub: "Practice Papers" },
+            { label: "24/7 Support", sub: "Always Here for You" },
           ].map((stat, i) => (
             <React.Fragment key={i}>
               <div className="flex items-center gap-3">
@@ -87,7 +88,7 @@ const Hero = () => {
                   <div className="text-[11px] text-[var(--muted)] font-medium">{stat.sub}</div>
                 </div>
               </div>
-              {i < 2 && <div className="hidden md:block text-[var(--border)] font-light text-xl">·</div>}
+              {i < 3 && <div className="hidden md:block text-[var(--border)] font-light text-xl">·</div>}
             </React.Fragment>
           ))}
         </div>
