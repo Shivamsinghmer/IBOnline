@@ -56,10 +56,12 @@
   
   html {
     @apply scroll-smooth;
+    overflow-x: hidden;
   }
 
   body {
     @apply bg-background text-foreground font-body;
+    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02";
   }

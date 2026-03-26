@@ -26,7 +26,7 @@ const Hero = () => {
           className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-[var(--foreground)] leading-[1.2] sm:leading-[1.1] mb-6 tracking-tight animate-fade-up px-2"
           style={{ animationDelay: "100ms", letterSpacing: "-0.01em" }}
         >
-          Excel in Your IB Exams by perfecting your preparation with<br className="hidden sm:block" />
+          Excel in Your IB Exams by perfecting your preparation with<br className="block" />
           <span className="relative inline-block mt-1 sm:mt-2">
             <em className="italic not-italic font-bold font-heading text-[var(--foreground)]">top Tutors</em>
             <svg viewBox="0 0 200 8" className="absolute -bottom-1 left-0 w-full text-[var(--primary)] pointer-events-none" preserveAspectRatio="none">
@@ -68,7 +68,7 @@ const Hero = () => {
         </div>
 
         <div
-          className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 sm:gap-x-8 md:gap-x-12 w-full animate-fade-up max-w-[1100px] mt-12 sm:mt-16 bg-white sm:bg-transparent p-6 sm:p-0 rounded-sm sm:rounded-none border sm:border-none border-[var(--border)] shadow-sm sm:shadow-none"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-y-6 sm:gap-y-8 gap-x-4 sm:gap-x-8 md:gap-x-12 w-full animate-fade-up max-w-[1100px] mt-12 sm:mt-16 bg-white sm:bg-transparent p-6 sm:p-4 md:p-0 rounded-sm sm:rounded-none border border-[var(--border)] sm:border-none shadow-sm sm:shadow-none"
           style={{ animationDelay: "400ms" }}
         >
           {[
@@ -77,13 +77,10 @@ const Hero = () => {
             { label: "IB Resources", sub: "Practice Papers" },
             { label: "Regular Feedback", sub: "For Parents" },
           ].map((stat, i) => (
-            <div key={i} className="flex items-center gap-3 sm:gap-4 justify-start sm:justify-center px-2">
-              <div className="w-10 h-10 sm:w-8 sm:h-8 bg-[var(--primary-light)] rounded-full flex items-center justify-center shadow-sm shrink-0">
-                <div className="w-2.5 h-2.5 sm:w-2 sm:h-2 bg-[var(--primary)] rounded-full" />
-              </div>
-              <div className="flex flex-col text-left">
-                <span className="text-sm font-semibold text-[var(--foreground)] leading-tight whitespace-nowrap">{stat.label}</span>
-                <span className="text-[11px] text-[var(--muted)] font-medium mt-0.5 leading-none">{stat.sub}</span>
+            <div key={i} className="flex flex-col items-center sm:items-start gap-2 justify-start sm:justify-center text-center sm:text-left px-1">
+              <div className="flex flex-col">
+                <span className="text-sm font-bold text-[var(--foreground)] leading-tight">{stat.label}</span>
+                <span className="text-[10px] text-[var(--muted)] font-medium mt-1 leading-tight">{stat.sub}</span>
               </div>
             </div>
           ))}
