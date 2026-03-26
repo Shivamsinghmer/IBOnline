@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-[100dvh] pt-24 pb-12 flex flex-col items-center justify-center bg-[var(--background)]">
+    <section className="relative min-h-[100dvh] pt-20 sm:pt-24 pb-12 flex flex-col items-center justify-center bg-[var(--background)]">
       {/* Subtle Radial Glow */}
       <div
         className="absolute inset-x-0 top-0 h-full pointer-events-none opacity-40"
@@ -27,7 +27,7 @@ const Hero = () => {
           style={{ animationDelay: "100ms", letterSpacing: "-0.01em" }}
         >
           Excel in Your IB Exams by perfecting your preparation with<br className="hidden sm:block" />
-          <span className="relative inline-block mt-2">
+          <span className="relative inline-block mt-1 sm:mt-2">
             <em className="italic not-italic font-bold font-heading text-[var(--foreground)]">top Tutors</em>
             <svg viewBox="0 0 200 8" className="absolute -bottom-1 left-0 w-full text-[var(--primary)] pointer-events-none" preserveAspectRatio="none">
               <path
@@ -52,44 +52,40 @@ const Hero = () => {
 
         {/* CTAs */}
         <div
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 w-full max-w-sm sm:max-w-none animate-fade-up px-6"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 md:mb-12 w-full max-w-sm sm:max-w-none animate-fade-up px-6"
           style={{ animationDelay: "300ms" }}
         >
           <Link href="#contact-form" className="w-full sm:w-auto">
-            <button className="w-full sm:w-auto bg-[var(--primary)] text-white rounded-full px-8 py-3.5 font-semibold text-base hover:bg-[var(--primary-dark)] transition-all duration-200 shadow-[0_4px_20px_rgba(0,69,135,0.3)] flex items-center justify-center gap-2">
+            <button className="w-full sm:w-auto bg-[var(--primary)] text-white rounded-sm px-8 py-3.5 font-semibold text-sm sm:text-base hover:bg-[var(--primary-dark)] transition-all duration-200 shadow-[0_4px_20px_rgba(0,69,135,0.3)] flex items-center justify-center gap-2">
               Get Started
             </button>
           </Link>
           <Link href="#how-it-works" className="w-full sm:w-auto">
-            <button className="w-full sm:w-auto bg-[var(--primary)] text-white rounded-full px-8 py-3.5 font-semibold text-base hover:bg-[var(--primary-dark)] transition-all duration-200 shadow-[0_4px_20px_rgba(0,69,135,0.3)] flex items-center justify-center gap-2">
+            <button className="w-full sm:w-auto bg-[var(--primary)] text-white rounded-sm px-8 py-3.5 font-semibold text-sm sm:text-base hover:bg-[var(--primary-dark)] transition-all duration-200 shadow-[0_4px_20px_rgba(0,69,135,0.3)] flex items-center justify-center gap-2">
               Learn More
             </button>
           </Link>
         </div>
 
-        {/* Trust Badges */}
         <div
-          className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 w-full animate-fade-up"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 sm:gap-x-8 md:gap-x-12 w-full animate-fade-up max-w-[1100px] mt-12 sm:mt-16 bg-white sm:bg-transparent p-6 sm:p-0 rounded-sm sm:rounded-none border sm:border-none border-[var(--border)] shadow-sm sm:shadow-none"
           style={{ animationDelay: "400ms" }}
         >
           {[
             { label: "Expert Tutors", sub: "Verified Credentials" },
             { label: "Guaranteed Success", sub: "Grade Improvement" },
             { label: "IB Resources", sub: "Practice Papers" },
-            { label: "24/7 Support", sub: "Always Here for You" },
+            { label: "Regular Feedback", sub: "For Parents" },
           ].map((stat, i) => (
-            <React.Fragment key={i}>
-              <div className="flex items-center gap-3">
-                <div className="w-6 h-6 bg-[var(--primary-light)] rounded-full flex items-center justify-center shadow-sm shrink-0">
-                  <div className="w-1.5 h-1.5 bg-[var(--primary)] rounded-full" />
-                </div>
-                <div className="text-left">
-                  <div className="text-sm font-semibold text-[var(--foreground)] leading-tight">{stat.label}</div>
-                  <div className="text-[11px] text-[var(--muted)] font-medium">{stat.sub}</div>
-                </div>
+            <div key={i} className="flex items-center gap-3 sm:gap-4 justify-start sm:justify-center px-2">
+              <div className="w-10 h-10 sm:w-8 sm:h-8 bg-[var(--primary-light)] rounded-full flex items-center justify-center shadow-sm shrink-0">
+                <div className="w-2.5 h-2.5 sm:w-2 sm:h-2 bg-[var(--primary)] rounded-full" />
               </div>
-              {i < 3 && <div className="hidden md:block text-[var(--border)] font-light text-xl">·</div>}
-            </React.Fragment>
+              <div className="flex flex-col text-left">
+                <span className="text-sm font-semibold text-[var(--foreground)] leading-tight whitespace-nowrap">{stat.label}</span>
+                <span className="text-[11px] text-[var(--muted)] font-medium mt-0.5 leading-none">{stat.sub}</span>
+              </div>
+            </div>
           ))}
         </div>
       </div>

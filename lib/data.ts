@@ -96,26 +96,7 @@ export const testimonials = [
   },
 ];
 
-export const pricingPlans = [
-  {
-    name: "Starter",
-    price: 29,
-    features: ["4 Sessions / Month", "1 Subject", "Email Support", "Standard Tutors"],
-    highlight: false,
-  },
-  {
-    name: "Pro",
-    price: 59,
-    features: ["10 Sessions / Month", "3 Subjects", "Priority Support", "Expert Tutors", "Workshops"],
-    highlight: true,
-  },
-  {
-    name: "Elite",
-    price: 99,
-    features: ["Unlimited Sessions", "All Subjects", "24/7 VIP Support", "Elite Tutors", "Family Account"],
-    highlight: false,
-  },
-];
+
 
 export const tutors = [
   {

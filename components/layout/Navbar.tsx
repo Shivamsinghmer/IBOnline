@@ -64,7 +64,7 @@ const Navbar = () => {
           ))}
 
           <Link href="#contact-form">
-            <button className="bg-[var(--dark)] text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-[var(--foreground)]/90 active:scale-[0.98] transition-all">
+            <button className="bg-[var(--dark)] text-white text-sm font-medium px-5 py-2.5 rounded-sm hover:bg-[var(--foreground)]/90 active:scale-[0.98] transition-all">
               Get Started
             </button>
           </Link>
@@ -100,7 +100,7 @@ const Navbar = () => {
             </Link>
           ))}
           <Link href="#contact-form" onClick={() => setMobileMenuOpen(false)}>
-            <button className="w-full bg-[var(--dark)] text-white font-medium px-5 py-3 rounded-full hover:bg-[var(--foreground)]/90 transition-all">
+            <button className="w-full bg-[var(--dark)] text-white font-medium px-5 py-3 rounded-sm hover:bg-[var(--foreground)]/90 transition-all">
               Get Started
             </button>
           </Link>
