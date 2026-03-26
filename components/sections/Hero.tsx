@@ -61,7 +61,7 @@ const Hero = () => {
             </button>
           </Link>
           <Link href="#how-it-works" className="w-full sm:w-auto">
-            <button className="w-full sm:w-auto bg-white text-[var(--primary)] border-2 border-[var(--primary)] rounded-full px-8 py-3.5 font-semibold text-base hover:bg-[var(--primary-light)] transition-all duration-200 flex items-center justify-center gap-2">
+            <button className="w-full sm:w-auto bg-[var(--primary)] text-white rounded-full px-8 py-3.5 font-semibold text-base hover:bg-[var(--primary-dark)] transition-all duration-200 shadow-[0_4px_20px_rgba(0,69,135,0.3)] flex items-center justify-center gap-2">
               Learn More
             </button>
           </Link>
