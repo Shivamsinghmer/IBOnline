@@ -52,16 +52,16 @@ const Hero = () => {
 
         {/* CTAs */}
         <div
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 md:mb-12 w-full max-w-sm sm:max-w-none animate-fade-up px-6"
+          className="flex flex-row items-center justify-center gap-3 mb-6 md:mb-10 w-full animate-fade-up px-4"
           style={{ animationDelay: "300ms" }}
         >
-          <Link href="#contact-form" className="w-full sm:w-auto">
-            <button className="w-full sm:w-auto bg-[var(--primary)] text-white rounded-sm px-8 py-3.5 font-semibold text-sm sm:text-base hover:bg-[var(--primary-dark)] transition-all duration-200 shadow-[0_4px_20px_rgba(0,69,135,0.3)] flex items-center justify-center gap-2">
+          <Link href="#contact-form">
+            <button className="bg-[var(--primary)] text-white rounded-sm px-5 sm:px-8 py-2.5 sm:py-3.5 font-semibold text-[13px] sm:text-base hover:bg-[var(--primary-dark)] transition-all duration-200 shadow-[0_4px_20px_rgba(0,69,135,0.3)] flex items-center justify-center gap-2 whitespace-nowrap">
               Get Started
             </button>
           </Link>
-          <Link href="#how-it-works" className="w-full sm:w-auto">
-            <button className="w-full sm:w-auto bg-[var(--primary)] text-white rounded-sm px-8 py-3.5 font-semibold text-sm sm:text-base hover:bg-[var(--primary-dark)] transition-all duration-200 shadow-[0_4px_20px_rgba(0,69,135,0.3)] flex items-center justify-center gap-2">
+          <Link href="#how-it-works">
+            <button className="bg-[var(--primary)] text-white rounded-sm px-5 sm:px-8 py-2.5 sm:py-3.5 font-semibold text-[13px] sm:text-base hover:bg-[var(--primary-dark)] transition-all duration-200 shadow-[0_4px_20px_rgba(0,69,135,0.3)] flex items-center justify-center gap-2 whitespace-nowrap">
               Learn More
             </button>
           </Link>
