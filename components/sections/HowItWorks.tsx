@@ -7,28 +7,28 @@ const steps = [
     title: "Fill the engagement form",
     description: "Tell us about yourself, your grade level, and the subjects you are struggling with.",
     icon: <PenLine size={24} />,
-    image: "/step1.jpg",
+    image: "/atep1.jpg",
   },
   {
     number: "2",
     title: "Connect with a counselor",
     description: "Chat with a friendly counselor who will listen to your goals and find the right tutor.",
     icon: <PhoneCall size={24} />,
-    image: "/step2.jpg",
+    image: "/atep2.jpg",
   },
   {
     number: "3",
     title: "Book a free trial class",
     description: "Try a live class with your matched tutor — completely free, no strings attached.",
     icon: <CalendarPlus size={24} />,
-    image: "/step3.jpg",
+    image: "/atep3.jpg",
   },
   {
     number: "4",
     title: "Pay for subsequent engagement",
     description: "Happy with your trial? Pay for sessions and start making real progress today.",
     icon: <CreditCard size={24} />,
-    image: "/step4.jpg",
+    image: "/atep4.jpg",
   },
 ];
 
