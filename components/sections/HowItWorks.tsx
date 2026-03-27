@@ -14,7 +14,7 @@ const steps = [
     title: "Connect with a counselor",
     description: "Chat with a friendly counselor who will listen to your goals and find the right tutor.",
     icon: <PhoneCall size={24} />,
-    image: "/atep2.jpg",
+    image: "/atep2.png",
   },
   {
     number: "3",
