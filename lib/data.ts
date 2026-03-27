@@ -20,7 +20,7 @@ export const testimonials = [
     studentName: "Jason M.",
     grade: "Mathematics AA HL",
     region: "London, UK",
-    avatar: "https://i.pravatar.cc/100?u=jasonm",
+    avatar: "https://media.istockphoto.com/id/996191112/photo/teenage-boy-sitting-in-class.webp?a=1&b=1&s=612x612&w=0&k=20&c=DPdZs33PV-V6oglcDdYuGcAKx4xB1nPpwQnoLs3IWR0=",
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ export const testimonials = [
     studentName: "Lucas T.",
     grade: "Mathematics AA SL",
     region: "São Paulo, Brazil",
-    avatar: "https://i.pravatar.cc/100?u=lucast",
+    avatar: "https://media.istockphoto.com/id/972902010/photo/brazilian-boy-smiling.webp?a=1&b=1&s=612x612&w=0&k=20&c=mwEu-liwUa_cQTB71UfW11M_PxaId6wtSeIjSx98fE8=",
   },
   {
     id: 3,
@@ -36,7 +36,7 @@ export const testimonials = [
     studentName: "Mia L.",
     grade: "Mathematics AI HL",
     region: "Geneva, Switzerland",
-    avatar: "https://i.pravatar.cc/100?u=mial",
+    avatar: "https://media.istockphoto.com/id/1029797636/photo/school-girl-stock-image.jpg?s=612x612&w=0&k=20&c=vTO9wMeghrSTzTrKNvv_vBmjF7yJMMPA-coFg3bab2w=",
   },
   {
     id: 4,
@@ -44,7 +44,7 @@ export const testimonials = [
     studentName: "Noah W.",
     grade: "Mathematics AI SL",
     region: "Singapore",
-    avatar: "https://i.pravatar.cc/100?u=noahw",
+    avatar: "https://media.istockphoto.com/id/1763926700/photo/portrait-of-smiling-smart-school-boy-wearing-braces-on-teeth-looking-at-camera-education.webp?a=1&b=1&s=612x612&w=0&k=20&c=dd3FBTh7UodoHOicE89Bhe2t1AmzXy156wbkBYDejOk=",
   },
   {
     id: 5,
@@ -52,7 +52,7 @@ export const testimonials = [
     studentName: "Ava R.",
     grade: "Chemistry HL",
     region: "Dubai, UAE",
-    avatar: "https://i.pravatar.cc/100?u=avar",
+    avatar: "https://media.istockphoto.com/id/1315976559/photo/portrait-of-a-happy-young-girl-with-a-smiling-face.jpg?s=612x612&w=0&k=20&c=XMMtofLM9TOggkqdldbZYnjlGmCwaAu1nwNx3OcGt9E=",
   },
   {
     id: 6,
@@ -60,7 +60,7 @@ export const testimonials = [
     studentName: "Chloe H.",
     grade: "Chemistry SL",
     region: "Hong Kong",
-    avatar: "https://i.pravatar.cc/100?u=chloeh",
+    avatar: "https://media.istockphoto.com/id/1624415405/photo/confident-teenage-girl-with-arms-crossed-over-white-background.jpg?s=612x612&w=0&k=20&c=OY8DT5dVE8sk0ENZHkUDtG0Y6CJmgFeBhCmKUk6L0lA=",
   },
   {
     id: 7,
@@ -68,7 +68,7 @@ export const testimonials = [
     studentName: "Oliver B.",
     grade: "Physics HL",
     region: "Toronto, Canada",
-    avatar: "https://i.pravatar.cc/100?u=oliverb",
+    avatar: "https://media.istockphoto.com/id/1158015118/photo/portrait-of-a-teenager.jpg?s=612x612&w=0&k=20&c=e_rhW400KVtuJNSjiKlHCuJ9H4zwMjClH1cDKTPgWx8=",
   },
   {
     id: 8,
@@ -76,7 +76,7 @@ export const testimonials = [
     studentName: "Liam P.",
     grade: "Physics SL",
     region: "Sydney, Australia",
-    avatar: "https://i.pravatar.cc/100?u=liamp",
+    avatar: "https://media.istockphoto.com/id/868785846/photo/a-cheerful-muslim-man.webp?a=1&b=1&s=612x612&w=0&k=20&c=53tHiv1IdL3_vkQblxo1kJ2oSgCJRrczWEMTRm4JtrE=",
   },
   {
     id: 9,
@@ -84,7 +84,7 @@ export const testimonials = [
     studentName: "Sarah K.",
     grade: "Economics HL",
     region: "New York, USA",
-    avatar: "https://i.pravatar.cc/100?u=sarahk",
+    avatar: "https://media.istockphoto.com/id/1278976856/photo/happy-student-girl-at-high-school.jpg?s=612x612&w=0&k=20&c=XiJQHTm-LKgCr0s3hURY0ATGFfMZQH4B8gE6h2TlK4U=",
   },
   {
     id: 10,
@@ -92,7 +92,7 @@ export const testimonials = [
     studentName: "Amara G.",
     grade: "Economics SL",
     region: "Nairobi, Kenya",
-    avatar: "https://i.pravatar.cc/100?u=amarag",
+    avatar: "https://media.istockphoto.com/id/1278976856/photo/happy-student-girl-at-high-school.jpg?s=612x612&w=0&k=20&c=XiJQHTm-LKgCr0s3hURY0ATGFfMZQH4B8gE6h2TlK4U=",
   },
 ];
 

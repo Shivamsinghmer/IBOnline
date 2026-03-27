@@ -3,16 +3,20 @@
 import React, { useState } from "react";
 import { testimonials } from "@/lib/data";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Testimonials = () => {
   const displayTestimonials = testimonials.slice(0, 5);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0); // -1 for left, 1 for right
 
   const next = () => {
+    setDirection(1);
     setCurrentIndex((prev) => (prev + 1) % displayTestimonials.length);
   };
 
   const prev = () => {
+    setDirection(-1);
     setCurrentIndex((prev) => (prev - 1 + displayTestimonials.length) % displayTestimonials.length);
   };
 
@@ -23,6 +27,12 @@ const Testimonials = () => {
       items.push({ item: displayTestimonials[index], offset: i, originalIndex: index });
     }
     return items;
+  };
+
+  // Drag constants
+  const swipeConfidenceThreshold = 10000;
+  const swipePower = (offset: number, velocity: number) => {
+    return Math.abs(offset) * velocity;
   };
 
   return (
@@ -60,66 +70,106 @@ const Testimonials = () => {
             <ChevronRight size={20} className="hidden sm:block" />
           </button>
           
-          <div className="flex justify-center items-stretch gap-4 md:gap-6 lg:gap-8 w-full max-w-5xl relative z-10 px-6 sm:px-0">
-            {getVisibleItems().map(({ item, offset, originalIndex }) => (
-              <div
-                key={`${originalIndex}-${offset}`}
-                className={`w-full max-w-sm transition-all duration-500 ease-out flex-shrink-0 cursor-pointer
-                  ${offset === 0 ? "scale-105 z-20 opacity-100 shadow-[0_20px_60px_rgba(0,0,0,0.12)] border-[var(--primary)] cursor-default" : "scale-[0.90] z-10 opacity-50 hidden md:block hover:opacity-80"}
-                `}
-                onClick={() => {
-                  if (offset === -1) prev();
-                  if (offset === 1) next();
-                }}
-              >
-                <div className={`bg-white rounded-sm p-6 sm:p-8 h-full flex flex-col items-start border transition-all duration-300 ${offset === 0 ? 'border-[var(--primary)] shadow-md' : 'border-[var(--border)]'}`}>
-                  <div className="flex items-center gap-1 mb-6">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} size={14} className="fill-[var(--primary)] text-[var(--primary)]" />
-                    ))}
-                  </div>
+          <motion.div 
+            className="flex justify-center items-stretch gap-4 md:gap-6 lg:gap-8 w-full max-w-5xl relative z-10 px-6 sm:px-0 cursor-grab active:cursor-grabbing"
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.2}
+            onDragEnd={(e, { offset, velocity }) => {
+              const swipe = swipePower(offset.x, velocity.x);
 
-                  <p className="text-[15px] sm:text-[16px] font-body text-[var(--foreground)] leading-relaxed mb-8 flex-grow font-normal italic">
-                    "{item.quote}"
-                  </p>
-
-                  <div className="w-full border-t border-[var(--border)] pt-6 flex items-center gap-4 mt-auto">
-                    <div className="relative w-11 h-11 min-w-[44px] rounded-xl overflow-hidden border-2 border-[var(--surface-2)] shadow-sm">
-                      <img
-                        src={item.avatar}
-                        alt={item.studentName}
-                        className="w-full h-full object-cover"
-                      />
+              if (swipe < -swipeConfidenceThreshold) {
+                next();
+              } else if (swipe > swipeConfidenceThreshold) {
+                prev();
+              }
+            }}
+          >
+            <AnimatePresence initial={false} mode="popLayout">
+              {getVisibleItems().map(({ item, offset, originalIndex }) => (
+                <motion.div
+                  key={`${originalIndex}`}
+                  initial={{ 
+                    opacity: 0, 
+                    scale: 0.8,
+                    x: direction > 0 ? 100 : -100 
+                  }}
+                  animate={{ 
+                    opacity: offset === 0 ? 1 : 0.5,
+                    scale: offset === 0 ? 1.05 : 0.9,
+                    x: 0,
+                    zIndex: offset === 0 ? 20 : 10,
+                    display: (offset === 0) ? "block" : (typeof window !== 'undefined' && window.innerWidth < 768 ? "none" : "block")
+                  }}
+                  exit={{ 
+                    opacity: 0,
+                    scale: 0.8,
+                    x: direction > 0 ? -100 : 100
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 30
+                  }}
+                  className={`w-full max-w-sm flex-shrink-0
+                    ${offset === 0 ? "z-20" : "z-10 hidden md:block"}
+                  `}
+                  onClick={() => {
+                    if (offset === -1) prev();
+                    if (offset === 1) next();
+                  }}
+                >
+                  <div className={`bg-white rounded-sm p-6 sm:p-8 h-full flex flex-col items-start border transition-all duration-300 ${offset === 0 ? 'border-[var(--primary)] shadow-[0_20px_60px_rgba(0,0,0,0.12)]' : 'border-[var(--border)] opacity-50'}`}>
+                    <div className="flex items-center gap-1 mb-6">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} size={14} className="fill-[var(--primary)] text-[var(--primary)]" />
+                      ))}
                     </div>
-                    <div className="flex flex-col">
-                      <span className="text-sm font-body font-bold text-[var(--foreground)] leading-tight">
-                        {item.studentName}
-                      </span>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-xs font-body text-[var(--muted)]">
-                          {item.grade}
+
+                    <p className="text-[15px] sm:text-[16px] font-body text-[var(--foreground)] leading-relaxed mb-8 flex-grow font-normal italic">
+                      "{item.quote}"
+                    </p>
+
+                    <div className="w-full border-t border-[var(--border)] pt-6 flex items-center gap-4 mt-auto">
+                      <div className="relative w-11 h-11 min-w-[44px] rounded-xl overflow-hidden border-2 border-[var(--surface-2)] shadow-sm">
+                        <img
+                          src={item.avatar}
+                          alt={item.studentName}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-sm font-body font-bold text-[var(--foreground)] leading-tight">
+                          {item.studentName}
                         </span>
-                        <span className="w-1 h-1 rounded-full bg-[var(--border)]" />
-                        <span className="text-xs font-body font-medium text-[var(--primary-dark)]">
-                          {item.region}
-                        </span>
+                        <div className="flex items-center gap-2 mt-1">
+                          <span className="text-xs font-body text-[var(--muted)]">
+                            {item.grade}
+                          </span>
+                          <span className="w-1 h-1 rounded-full bg-[var(--border)]" />
+                          <span className="text-xs font-body font-medium text-[var(--primary-dark)]">
+                            {item.region}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
         </div>
 
         {/* Navigation Arrows (Mobile) & Pagination */}
         <div className="flex flex-col items-center gap-6 mt-4 md:mt-8">
-
           <div className="flex justify-center gap-2.5">
             {displayTestimonials.map((_, idx) => (
               <button
                 key={idx}
-                onClick={() => setCurrentIndex(idx)}
+                onClick={() => {
+                  setDirection(idx > currentIndex ? 1 : -1);
+                  setCurrentIndex(idx);
+                }}
                 className={`h-2 rounded-full transition-all duration-300 ${
                   currentIndex === idx 
                     ? "w-8 bg-[var(--primary)] shadow-[0_0_10px_rgba(0,69,135,0.3)]" 
