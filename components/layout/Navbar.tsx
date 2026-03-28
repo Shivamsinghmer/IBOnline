@@ -19,10 +19,23 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "Subjects", href: "#subjects" },
-    { name: "How It Works", href: "#how-it-works" },
-    { name: "Success Stories", href: "#testimonials" },
+    { name: "Subjects", href: "/#subjects" },
+    { name: "How It Works", href: "/#how-it-works" },
+    { name: "Success Stories", href: "/#testimonials" },
   ];
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (window.location.pathname === "/" && href.startsWith("/#")) {
+      e.preventDefault();
+      const targetId = href.substring(2);
+      const elem = document.getElementById(targetId);
+      if (elem) {
+        elem.scrollIntoView({ behavior: "smooth" });
+        window.history.pushState(null, "", href);
+      }
+    }
+    setMobileMenuOpen(false);
+  };
 
   return (
     <header
@@ -57,13 +70,14 @@ const Navbar = () => {
             <Link
               key={link.name}
               href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
               className="text-sm font-body font-medium text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
             >
               {link.name}
             </Link>
           ))}
 
-          <Link href="#contact-form">
+          <Link href="/#contact-form" onClick={(e) => handleNavClick(e, "/#contact-form")}>
             <button className="bg-[var(--dark)] text-white text-sm font-medium px-5 py-2.5 rounded-sm hover:bg-[var(--foreground)]/90 active:scale-[0.98] transition-all">
               Get Started
             </button>
@@ -94,12 +108,12 @@ const Navbar = () => {
               key={link.name}
               href={link.href}
               className="text-lg font-body font-medium text-[var(--muted)] hover:text-[var(--foreground)]"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={(e) => handleNavClick(e, link.href)}
             >
               {link.name}
             </Link>
           ))}
-          <Link href="#contact-form" onClick={() => setMobileMenuOpen(false)}>
+          <Link href="/#contact-form" onClick={(e) => handleNavClick(e, "/#contact-form")}>
             <button className="w-full bg-[var(--dark)] text-white font-medium px-5 py-3 rounded-sm hover:bg-[var(--foreground)]/90 transition-all">
               Get Started
             </button>
