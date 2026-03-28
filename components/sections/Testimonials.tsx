@@ -88,6 +88,7 @@ const Testimonials = () => {
             <AnimatePresence initial={false} mode="popLayout">
               {getVisibleItems().map(({ item, offset, originalIndex }) => (
                 <motion.div
+                  layout
                   key={`${originalIndex}`}
                   initial={{ 
                     opacity: 0, 
@@ -98,8 +99,7 @@ const Testimonials = () => {
                     opacity: offset === 0 ? 1 : 0.5,
                     scale: offset === 0 ? 1.05 : 0.9,
                     x: 0,
-                    zIndex: offset === 0 ? 20 : 10,
-                    display: (offset === 0) ? "block" : (typeof window !== 'undefined' && window.innerWidth < 768 ? "none" : "block")
+                    zIndex: offset === 0 ? 20 : 10
                   }}
                   exit={{ 
                     opacity: 0,
@@ -111,7 +111,7 @@ const Testimonials = () => {
                     stiffness: 300,
                     damping: 30
                   }}
-                  className={`w-full max-w-sm flex-shrink-0
+                  className={`w-full max-w-sm flex-shrink-0 cursor-pointer transition-colors duration-300
                     ${offset === 0 ? "z-20" : "z-10 hidden md:block"}
                   `}
                   onClick={() => {
