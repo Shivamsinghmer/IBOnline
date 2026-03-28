@@ -50,24 +50,22 @@ const Testimonials = () => {
         </div>
 
         <div className="relative flex items-center justify-center py-6 sm:py-8 px-4 sm:px-16">
-          {/* Left Arrow */}
+          {/* Left Arrow (Desktop Only) */}
           <button
             onClick={prev}
-            className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 z-30 w-9 h-9 sm:w-12 sm:h-12 rounded-full border border-[var(--border)] bg-white flex items-center justify-center text-[var(--foreground)] transition-all duration-300 shadow-lg hover:bg-[var(--primary)] hover:border-[var(--primary)] hover:text-white active:scale-95"
+            className="hidden sm:flex absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full border border-[var(--border)] bg-white items-center justify-center text-[var(--foreground)] transition-all duration-300 shadow-lg hover:bg-[var(--primary)] hover:border-[var(--primary)] hover:text-white active:scale-95"
             aria-label="Previous testimonial"
           >
-            <ChevronLeft size={18} className="sm:hidden" />
-            <ChevronLeft size={20} className="hidden sm:block" />
+            <ChevronLeft size={20} />
           </button>
 
-          {/* Right Arrow */}
+          {/* Right Arrow (Desktop Only) */}
           <button
             onClick={next}
-            className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 z-30 w-9 h-9 sm:w-12 sm:h-12 rounded-full border border-[var(--border)] bg-white flex items-center justify-center text-[var(--foreground)] transition-all duration-300 shadow-lg hover:bg-[var(--primary)] hover:border-[var(--primary)] hover:text-white active:scale-95"
+            className="hidden sm:flex absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full border border-[var(--border)] bg-white items-center justify-center text-[var(--foreground)] transition-all duration-300 shadow-lg hover:bg-[var(--primary)] hover:border-[var(--primary)] hover:text-white active:scale-95"
             aria-label="Next testimonial"
           >
-            <ChevronRight size={18} className="sm:hidden" />
-            <ChevronRight size={20} className="hidden sm:block" />
+            <ChevronRight size={20} />
           </button>
           
           <motion.div 
@@ -162,6 +160,22 @@ const Testimonials = () => {
 
         {/* Navigation Arrows (Mobile) & Pagination */}
         <div className="flex flex-col items-center gap-6 mt-4 md:mt-8">
+          <div className="flex items-center gap-8 sm:hidden px-4 w-full justify-center mb-2">
+            <button
+              onClick={prev}
+              className="w-11 h-11 rounded-full border border-[var(--border)] bg-white flex items-center justify-center text-[var(--foreground)] shadow-sm active:scale-95 transition-all"
+              aria-label="Previous testimonial"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              onClick={next}
+              className="w-11 h-11 rounded-full border border-[var(--border)] bg-white flex items-center justify-center text-[var(--foreground)] shadow-sm active:scale-95 transition-all"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
           <div className="flex justify-center gap-2.5">
             {displayTestimonials.map((_, idx) => (
               <button
