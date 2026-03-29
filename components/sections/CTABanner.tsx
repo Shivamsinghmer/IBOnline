@@ -202,8 +202,21 @@ const CustomDatePicker = ({ value, onChange, placeholder }: any) => {
             <div className="flex items-center justify-between mb-4">
               <span className="text-sm font-semibold text-[var(--foreground)]">{monthName} {currentMonth.getFullYear()}</span>
               <div className="flex gap-1">
-                <button type="button" onClick={() => changeMonth(-1)} className="p-1 hover:bg-[var(--surface-2)] rounded-md transition-colors"><ChevronDown size={14} className="rotate-90" /></button>
-                <button type="button" onClick={() => changeMonth(1)} className="p-1 hover:bg-[var(--surface-2)] rounded-md transition-colors"><ChevronDown size={14} className="-rotate-90" /></button>
+                <button 
+                  type="button" 
+                  onClick={() => {
+                    const todayDate = new Date();
+                    const minMonth = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
+                    const current = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1);
+                    if (current > minMonth) {
+                      changeMonth(-1);
+                    }
+                  }} 
+                  className={`p-1 rounded-md transition-colors ${new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1) <= new Date(new Date().getFullYear(), new Date().getMonth(), 1) ? 'opacity-30 cursor-not-allowed' : 'hover:bg-[var(--surface-2)] cursor-pointer'}`}
+                >
+                  <ChevronDown size={14} className="rotate-90" />
+                </button>
+                <button type="button" onClick={() => changeMonth(1)} className="p-1 hover:bg-[var(--surface-2)] rounded-md transition-colors cursor-pointer"><ChevronDown size={14} className="-rotate-90" /></button>
               </div>
             </div>
             <div className="grid grid-cols-7 gap-1 text-center mb-1">
@@ -215,12 +228,19 @@ const CustomDatePicker = ({ value, onChange, placeholder }: any) => {
               {[...Array(firstDay)].map((_, i) => <div key={`empty-${i}`} />)}
               {[...Array(daysInMonth)].map((_, i) => {
                 const day = i + 1;
+                const checkDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
+                checkDate.setHours(0, 0, 0, 0);
+                const todayBtn = new Date();
+                todayBtn.setHours(0, 0, 0, 0);
+                const isDisabled = checkDate <= todayBtn;
+
                 return (
                   <button
                     key={day}
                     type="button"
-                    onClick={() => handleDateSelect(day)}
-                    className="w-full aspect-square text-xs rounded-lg hover:bg-[var(--primary-light)] hover:text-[#002a5c] flex items-center justify-center transition-colors"
+                    onClick={() => !isDisabled && handleDateSelect(day)}
+                    disabled={isDisabled}
+                    className={`w-full aspect-square text-xs rounded-lg flex items-center justify-center transition-colors ${isDisabled ? 'opacity-30 cursor-not-allowed text-[var(--muted)]' : 'hover:bg-[var(--primary-light)] hover:text-[#002a5c] cursor-pointer'}`}
                   >
                     {day}
                   </button>
