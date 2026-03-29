@@ -5,6 +5,7 @@ import { Check, CheckCircle2, ChevronDown, Calendar as CalendarIcon, X } from "l
 import { subjects } from "@/lib/data";
 import { motion, AnimatePresence } from "framer-motion";
 import { z } from "zod";
+import emailjs from '@emailjs/browser';
 
 const formSchema = z.object({
   name: z.string()
@@ -244,8 +245,10 @@ const CTABanner = () => {
     date: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = formSchema.safeParse(formData);
     
@@ -259,7 +262,32 @@ const CTABanner = () => {
     }
     
     setErrors({});
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    try {
+      const templateParams = {
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        phone: `${formData.phoneCode} ${formData.phone}`,
+        date: formData.date
+      };
+
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID",
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID",
+        templateParams,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY"
+      );
+      
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error("Failed to send email:", error);
+      setSubmitError("Failed to send your request. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -388,11 +416,18 @@ const CTABanner = () => {
                     {errors.date && <span className="text-red-500 text-xs mt-1 block">{errors.date}</span>}
                   </div>
 
+                  {submitError && <div className="text-red-500 text-sm">{submitError}</div>}
+
                   <button
                     type="submit"
-                    className="bg-[var(--dark)] text-white font-semibold text-sm rounded-sm w-full py-4 mt-2 hover:bg-[#1f2937] active:scale-[0.99] transition-all"
+                    disabled={isSubmitting}
+                    className="bg-[var(--dark)] text-white font-semibold text-sm rounded-sm w-full py-4 mt-2 hover:bg-[#1f2937] active:scale-[0.99] transition-all disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center"
                   >
-                    Submit Request
+                    {isSubmitting ? (
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    ) : (
+                      "Submit Request"
+                    )}
                   </button>
                 </form>
               </>
