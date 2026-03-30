@@ -287,11 +287,12 @@ const CTABanner = () => {
 
     try {
       const templateParams = {
-        name: formData.name,
-        email: formData.email,
-        subject: formData.subject,
-        phone: `${formData.phoneCode} ${formData.phone}`,
-        date: formData.date
+        student_name: formData.name,
+        subject_required: formData.subject,
+        email_id: formData.email,
+        phone_country_code: formData.phoneCode,
+        phone_number: formData.phone,
+        tentative_date: formData.date
       };
 
       await emailjs.send(
