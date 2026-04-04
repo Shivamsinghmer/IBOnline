@@ -6,6 +6,8 @@ import { subjects } from "@/lib/data";
 import { motion, AnimatePresence } from "framer-motion";
 import { z } from "zod";
 import emailjs from '@emailjs/browser';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 const formSchema = z.object({
   name: z.string()
@@ -336,17 +338,98 @@ const CTABanner = () => {
                   <div>
                     <label className="text-xs font-heading font-semibold text-[var(--muted)] uppercase tracking-wide mb-1.5 block">Phone Number</label>
                     <div className="relative w-full">
-                      <input
-                        type="tel"
-                        placeholder="e.g. +971-502914902"
-                        value={formData.phone}
-                        onChange={(e) => {
-                          setFormData({ ...formData, phone: e.target.value });
-                          if (errors.phone) setErrors({ ...errors, phone: "" });
-                        }}
-                        className={`w-full bg-[var(--background)] border ${errors.phone ? 'border-red-500 focus:ring-red-500/20' : 'border-[var(--border)] focus:border-[var(--primary)] focus:ring-[var(--primary)]/20'} rounded-sm px-4 py-3 text-sm text-[var(--foreground)] placeholder:text-[var(--muted)] outline-none focus:ring-2 transition-all duration-150`}
-                      />
-                      <p className="text-[10px] text-[var(--muted)] mt-1.5">Example: +971-502914902</p>
+                      <style>{`
+                        .phone-input-wrapper .react-tel-input .form-control {
+                          width: 100% !important;
+                          height: 46px !important;
+                          border: none !important;
+                          background: transparent !important;
+                          font-size: 14px !important;
+                          color: inherit !important;
+                          padding-left: 52px !important;
+                          border-radius: 0 !important;
+                          box-shadow: none !important;
+                        }
+                        .phone-input-wrapper .react-tel-input .form-control:focus {
+                          box-shadow: none !important;
+                          border: none !important;
+                          outline: none !important;
+                        }
+                        .phone-input-wrapper .react-tel-input .flag-dropdown {
+                          background: transparent !important;
+                          border: none !important;
+                          border-radius: 0 !important;
+                        }
+                        .phone-input-wrapper .react-tel-input .flag-dropdown.open {
+                          background: transparent !important;
+                        }
+                        .phone-input-wrapper .react-tel-input .selected-flag {
+                          background: transparent !important;
+                          border-radius: 0 !important;
+                          padding-left: 12px !important;
+                        }
+                        .phone-input-wrapper .react-tel-input .selected-flag:hover,
+                        .phone-input-wrapper .react-tel-input .selected-flag:focus {
+                          background: rgba(0,0,0,0.05) !important;
+                        }
+                        .phone-input-wrapper .react-tel-input .country-list {
+                          width: 300px !important;
+                          border: 1px solid #e5e7eb !important;
+                          border-radius: 6px !important;
+                          box-shadow: 0 10px 40px rgba(0,0,0,0.12) !important;
+                          margin-top: 4px !important;
+                          font-size: 13px !important;
+                          overflow-y: auto !important;
+                          max-height: 220px !important;
+                        }
+                        .phone-input-wrapper .react-tel-input .country-list .search {
+                          padding: 8px 10px !important;
+                          position: sticky !important;
+                          top: 0 !important;
+                          background: white !important;
+                          z-index: 1 !important;
+                        }
+                        .phone-input-wrapper .react-tel-input .country-list .search-box {
+                          width: 100% !important;
+                          margin: 0 !important;
+                          padding: 7px 10px !important;
+                          border: 1px solid #e5e7eb !important;
+                          border-radius: 4px !important;
+                          font-size: 13px !important;
+                          outline: none !important;
+                          box-sizing: border-box !important;
+                        }
+                        .phone-input-wrapper .react-tel-input .country-list .country {
+                          padding: 8px 12px !important;
+                          display: flex !important;
+                          align-items: center !important;
+                          gap: 10px !important;
+                        }
+                        .phone-input-wrapper .react-tel-input .country-list .country:hover {
+                          background: #f3f4f6 !important;
+                        }
+                        .phone-input-wrapper .react-tel-input .country-list .country.highlight {
+                          background: #eff6ff !important;
+                        }
+                        .phone-input-wrapper .react-tel-input .country-list .dial-code {
+                          color: #6b7280 !important;
+                        }
+                      `}</style>
+                      <div className={`phone-input-wrapper w-full bg-[var(--background)] border ${errors.phone ? 'border-red-500' : 'border-[var(--border)] focus-within:border-[var(--primary)] focus-within:ring-2 focus-within:ring-[var(--primary)]/20'} rounded-sm transition-all duration-150 overflow-visible`}>
+                        <PhoneInput
+                          country={'us'}
+                          enableSearch={true}
+                          disableSearchIcon={true}
+                          searchPlaceholder="Search country..."
+                          value={formData.phone}
+                          onChange={(phone) => {
+                            setFormData({ ...formData, phone: '+' + phone });
+                            if (errors.phone) setErrors({ ...errors, phone: "" });
+                          }}
+                          containerStyle={{ width: '100%' }}
+                        />
+                      </div>
+                      <p className="text-[10px] text-[var(--muted)] mt-1.5">Example: +971 50 291 4902</p>
                       {errors.phone && <span className="text-red-500 text-xs mt-1 block">{errors.phone}</span>}
                     </div>
                   </div>
