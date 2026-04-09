@@ -16,7 +16,7 @@ const formSchema = z.object({
       const numbers = val.match(/\d/g);
       return !numbers || numbers.length <= 1;
     }, "Name can contain at most 1 number"),
-  subject: z.string().min(1, "Subject is required"),
+  subject: z.array(z.string()).min(1, "At least one subject is required"),
   email: z.string().email("Invalid email address"),
   phone: z.string().min(5, "Phone number with country code is required"),
   date: z.string().min(1, "Tentative date is required"),
@@ -36,7 +36,17 @@ const CustomSelect = ({ value, onChange, options, placeholder }: any) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const selectedOption = options.find((opt: any) => opt.label === value);
+  const handleSelect = (label: string) => {
+    if (value.includes(label)) {
+      onChange(value.filter((item: string) => item !== label));
+    } else {
+      onChange([...value, label]);
+    }
+  };
+
+  const displayValue = value && value.length > 0 
+    ? (value.length <= 2 ? value.join(", ") : `${value.length} subjects selected`)
+    : placeholder;
 
   return (
     <div className="relative w-full" ref={containerRef}>
@@ -44,10 +54,10 @@ const CustomSelect = ({ value, onChange, options, placeholder }: any) => {
         onClick={() => setIsOpen(!isOpen)}
         className={`w-full bg-[var(--background)] border border-[var(--border)] rounded-sm px-4 py-3 text-sm flex items-center justify-between cursor-pointer transition-all duration-200 ${isOpen ? "border-[var(--primary)] ring-2 ring-[var(--primary)]/20 shadow-sm" : "hover:border-[var(--muted)]/50"}`}
       >
-        <span className={value ? "text-[var(--foreground)]" : "text-[var(--muted)]"}>
-          {selectedOption ? selectedOption.label : placeholder}
+        <span className={`block truncate pr-2 flex-1 ${value && value.length > 0 ? "text-[var(--foreground)]" : "text-[var(--muted)]"}`}>
+          {displayValue}
         </span>
-        <ChevronDown size={16} className={`text-[var(--muted)] transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
+        <ChevronDown size={16} className={`text-[var(--muted)] transition-transform duration-200 flex-shrink-0 ${isOpen ? "rotate-180" : ""}`} />
       </div>
 
       <AnimatePresence>
@@ -62,14 +72,14 @@ const CustomSelect = ({ value, onChange, options, placeholder }: any) => {
             {options.map((option: any) => (
               <div
                 key={option.id}
-                onClick={() => {
-                  onChange(option.label);
-                  setIsOpen(false);
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleSelect(option.label);
                 }}
-                className={`flex items-center gap-3 px-4 py-2.5 text-sm cursor-pointer transition-colors ${value === option.label ? "bg-[var(--primary)] text-white font-medium" : "text-[var(--foreground)] hover:bg-[var(--surface-2)]"}`}
+                className={`flex items-center gap-3 px-4 py-2.5 text-sm cursor-pointer transition-colors ${value.includes(option.label) ? "bg-[var(--primary)]/10 text-[var(--primary)] font-medium" : "text-[var(--foreground)] hover:bg-[var(--surface-2)]"}`}
               >
                 <span>{option.label}</span>
-                {value === option.label && <Check size={14} className="ml-auto opacity-70" />}
+                {value.includes(option.label) && <Check size={14} className="ml-auto text-[var(--primary)]" />}
               </div>
             ))}
           </motion.div>
@@ -195,9 +205,15 @@ const CustomDatePicker = ({ value, onChange, placeholder }: any) => {
 
 const CTABanner = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    name: string;
+    subject: string[];
+    email: string;
+    phone: string;
+    date: string;
+  }>({
     name: "",
-    subject: "",
+    subject: [],
     email: "",
     phone: "",
     date: "",
@@ -226,7 +242,7 @@ const CTABanner = () => {
     try {
       const templateParams = {
         student_name: formData.name,
-        subject_required: formData.subject,
+        subjects_required: formData.subject.join(", "),
         email_id: formData.email,
         phone_country_code: "",
         phone_number: formData.phone,
@@ -309,12 +325,12 @@ const CTABanner = () => {
                       <label className="text-xs font-heading font-semibold text-[var(--muted)] uppercase tracking-wide mb-1.5 block">Subject Required</label>
                       <CustomSelect
                         value={formData.subject}
-                        onChange={(val: string) => {
+                        onChange={(val: string[]) => {
                           setFormData({ ...formData, subject: val });
                           if (errors.subject) setErrors({ ...errors, subject: "" });
                         }}
                         options={subjects}
-                        placeholder="Select a subject"
+                        placeholder="Select subject(s)"
                       />
                       {errors.subject && <span className="text-red-500 text-xs mt-1 block">{errors.subject}</span>}
                     </div>
